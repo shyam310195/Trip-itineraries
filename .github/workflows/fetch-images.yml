@@ -13,7 +13,11 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install pillow
-      - run: python scripts/fetch_images.py $(dirname $(ls */images.json))
+      - name: Download photos (second pass picks up any that were rate-limited)
+        run: |
+          python scripts/fetch_images.py $(dirname $(ls */images.json))
+          sleep 60
+          python scripts/fetch_images.py $(dirname $(ls */images.json))
       - name: Commit photos
         run: |
           git config user.name "github-actions[bot]"
