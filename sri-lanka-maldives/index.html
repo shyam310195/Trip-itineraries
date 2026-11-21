@@ -62,8 +62,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .btn{display:inline-flex;align-items:center;gap:8px;font:700 15px/1 var(--f-body);padding:15px 22px;border-radius:999px;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink);background:transparent}
 .btn.fill{background:var(--coral);border-color:var(--coral);color:#fff}
-.arch{position:relative;aspect-ratio:4/5;max-height:640px;justify-self:end;width:100%;max-width:500px}
-.arch .frame{position:absolute;inset:0;border-radius:999px 999px 28px 28px;overflow:hidden;background:linear-gradient(170deg,#9FDDEA,#F7DDB2);box-shadow:0 30px 60px -30px rgba(20,35,43,.45);cursor:zoom-in}
+.arch{position:relative;aspect-ratio:4/4.6;max-height:640px;justify-self:end;width:100%;max-width:500px}
+.arch .frame{position:absolute;inset:0;border-radius:28px;overflow:hidden;background:linear-gradient(170deg,#9FDDEA,#F7DDB2);box-shadow:0 30px 60px -30px rgba(20,35,43,.45);cursor:zoom-in}
 .arch .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
 .arch .slide.on{opacity:1}
 @media (prefers-reduced-motion: reduce){.arch .slide{transition:none}}
@@ -113,8 +113,9 @@ section.block{padding-block:72px 8px}
 .dcard.sea{background:linear-gradient(180deg,#FFFFFF,#E3F5F3)}
 
 /* dates to remember */
-.dates{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-@media (max-width:900px){.dates{grid-template-columns:repeat(2,minmax(0,1fr))}.dates .date:last-child{grid-column:1/-1}}
+.dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.date .d{font-size:44px!important}
+@media (max-width:600px){.dates{grid-template-columns:1fr}}
 .date{background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px;font-size:14px}
 .date .d{font:500 28px/1 var(--f-display)}
 .date.cel{background:linear-gradient(150deg,#FF8A66,#FFC27A);color:#3B1608}
@@ -134,11 +135,10 @@ section.block{padding-block:72px 8px}
 .stay small{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .stay b{font-size:15px}
 .cphoto{position:relative;aspect-ratio:5/4;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,#BFEBE7,#F7DDB2);box-shadow:var(--shadow);cursor:zoom-in}
-.chapter:nth-of-type(even) .cphoto{border-radius:999px 999px 28px 28px;aspect-ratio:4/4.2;max-width:520px;justify-self:end;width:100%}
 .cphoto img{width:100%;height:100%;object-fit:cover}
 .cphoto .cap{position:absolute;left:12px;bottom:12px;font:500 11px/1.3 var(--f-body);color:#fff;background:rgba(20,35,43,.45);padding:5px 9px;border-radius:999px;backdrop-filter:blur(4px)}
 .cphoto .cap a{color:inherit}
-@media (max-width:860px){.chead{grid-template-columns:1fr;gap:20px}.cphoto{order:-1}.chapter:nth-of-type(even) .cphoto{justify-self:center;max-width:420px}}
+@media (max-width:860px){.chead{grid-template-columns:1fr;gap:20px}.cphoto{order:-1}}
 
 /* photo cards */
 .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:12px;overflow-x:auto;margin-top:28px;padding:4px 2px 14px;scroll-snap-type:x mandatory}
@@ -274,7 +274,7 @@ dialog#lb button{font:700 14px var(--f-body);background:#fff;color:var(--ink);bo
   </div></section>
 
   <section class="block"><div class="wrap">
-    <div class="shead"><div><div class="kicker">Dates to remember</div><h2>Don't miss these</h2></div></div>
+    <div class="shead"><div><div class="kicker">The two big days</div><h2>Dates to remember</h2></div></div>
     <div class="dates" id="dates"></div>
   </div></section>
 
@@ -306,7 +306,6 @@ dialog#lb button{font:700 14px var(--f-body);background:#fff;color:var(--ink);bo
           <li>The VietJet allowance is 20 kg per bag. Weigh the bags on the night of 4 Dec.</li>
           <li>The Maldives green tax is paid at the Hulhumalé hotel on check-in.</li>
           <li>Carry a copy of the wedding card for the resort's honeymoon cake.</li>
-          <li>24 Nov is a Poya (full-moon) day: no alcohol is sold in Sri Lanka.</li>
         </ul>
       </div>
     </div>
@@ -422,7 +421,6 @@ const DAYS = [
   { ch:"south", date:"Mon 23 Nov", title:"Landing at 2 a.m., sunset on Coconut Tree Hill", sum:"Drive to Weligama in the dark, sleep, then the beach and the sunset hill.", imgs:["weligama2","coconut","mirissa"], stay:"Weligama Bay Marriott",
     items:[["00:40 – 02:00","IndiGo 6E-1171, Chennai T2 to Colombo"],["02:00","Land. ETA check, SIM card and cash"],["02:45 – 05:00","Driver meets us; drive to Weligama (early check-in requested)"],["05:00 – 11:00","Sleep. 11:30 brunch"],["14:00 – 16:30","<b>Weligama beach</b> and the Taprobane Island view","Taprobane island Weligama","key"],["17:00 – 18:30","<b>Coconut Tree Hill</b> sunset","Coconut Tree Hill Mirissa","key"],["19:00","Dinner on Mirissa beach. Back about 21:00"]] },
   { ch:"south", date:"Tue 24 Nov", title:"Lighthouse, blowhole, Galle Fort", sum:"East to Dondra and Matara, the Hummanaya blowhole, then sunset on the Galle Fort ramparts.", imgs:["galleview","dondra","hummanaya","galle"], stay:"Weligama Bay Marriott",
-    note:"Poya (full-moon) day: no alcohol is sold anywhere in Sri Lanka.",
     items:[["08:30","Leave"],["09:15 – 10:00","Dondra Head lighthouse","Dondra Head lighthouse"],["10:30 – 12:00","Matara: Paravi Duwa temple and the Star Fort","Paravi Duwa temple Matara"],["12:00","Lunch"],["13:30 – 15:00","Hummanaya blowhole (steps down to the viewpoint)","Hummanaya blowhole"],["16:30 – 19:00","<b>Galle Fort</b>, with sunset on the ramparts (about 1.5 h drive from Hummanaya)","Galle Fort ramparts sunset","key"],["19:00","Dinner in the fort. Back about 21:30"]] },
   { ch:"south", date:"Wed 25 Nov", title:"Reef dive and Hiriketiya", sum:"A discover-scuba dive at Unawatuna, the Peace Pagoda, then a swim and sunset at Hiriketiya.", imgs:["unawatuna","unawatuna2","pagoda"], stay:"Weligama Bay Marriott",
     items:[["07:30","Leave"],["08:15 – 12:00","<b>Scuba dive</b> with Sun Diving, Rock Island at 10 m (<a href=\"https://www.travelocity.com/things-to-do/discover-scuba-diving-in-beautiful-unawatuna-bay.a2332923.activity-details\" target=\"_blank\" rel=\"noopener\">listing</a>)","Unawatuna scuba diving","key"],["12:00","Lunch in Unawatuna"],["13:30 – 14:30","Japanese Peace Pagoda and Jungle Beach","Japanese Peace Pagoda Unawatuna"],["16:00 – 19:00","<b>Hiriketiya bay</b>: swim and sunset (about 1.5 h drive)","Hiriketiya beach","key"],["19:30","Dinner at Hiriketiya. Back about 20:45"]] },
@@ -530,13 +528,15 @@ const partOf = t => {
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
 const FP = (f, w) => "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(f) + "?width=" + w;
 const IMG = {};
-for (const [k, [file, alt]] of Object.entries(IMAGES)) IMG[k] = { key:k, file, alt, page:"https://commons.wikimedia.org/wiki/File:" + encodeURIComponent(file), src:FP(file, 960), big:FP(file, 1920), thumb:FP(file, 330) };
+for (const [k, [file, alt]] of Object.entries(IMAGES)) IMG[k] = { key:k, file, alt, page:"https://commons.wikimedia.org/wiki/File:" + encodeURIComponent(file), src:`img/${k}.jpg`, big:`img/${k}.jpg`, thumb:`img/${k}-s.jpg`, remote:FP(file, 1280) };
+// Photos are mirrored into this site (img/); if one is missing, fall back to Wikimedia once, then hide.
+window.fb = (el, k) => { if (!el.dataset.fb && IMG[k]) { el.dataset.fb = 1; el.src = IMG[k].remote; return; } el.style.visibility = "hidden"; };
 const used = new Set();
 const creditHTML = m => m.author ? `<a href="${m.page}" target="_blank" rel="noopener">${esc(m.author)}</a>, ${esc(m.license)}` : `<a href="${m.page}" target="_blank" rel="noopener">Wikimedia Commons</a>`;
 const credit = k => `<span data-cr="${k}">${creditHTML(IMG[k])}</span>`;
-const onerr = `onerror="this.closest('figure,.im,.cphoto')&&this.closest('figure,.im,.cphoto').classList.add('noimg');this.style.visibility='hidden'"`;
+const onerr = k => `onerror="fb(this,'${k}')"`;
 const fig = (k, size="src") => { const m = IMG[k]; if (!m) return ""; used.add(k);
-  return `<figure class="ph" data-k="${k}"><img loading="lazy" src="${m[size]}" alt="${esc(m.alt)}" ${onerr}><figcaption><b>${esc(m.alt)}</b>Photo: ${credit(k)}</figcaption></figure>`; };
+  return `<figure class="ph" data-k="${k}"><img loading="lazy" src="${m[size]}" alt="${esc(m.alt)}" ${onerr(k)}><figcaption><b>${esc(m.alt)}</b>Photo: ${credit(k)}</figcaption></figure>`; };
 
 /* ---------- top ---------- */
 document.getElementById("nav").innerHTML = `<a href="#journey" class="on">Overview</a>` + CHAPTERS.map(c => `<a href="#${c.id}">${c.nav}</a>`).join("") + `<a href="#practical">Practical</a>`;
@@ -546,7 +546,7 @@ document.getElementById("icoHeart").innerHTML = ICON.heart;
 document.getElementById("icoCake").innerHTML = ICON.cake;
 
 const slides = document.getElementById("slides"), dots = document.getElementById("dots"), heroCap = document.getElementById("heroCap");
-slides.innerHTML = HERO.map((k,i) => { used.add(k); return `<img class="slide${i?'':' on'}" src="${IMG[k].big}" alt="${esc(IMG[k].alt)}" ${i?'loading="lazy"':''} onerror="this.style.visibility='hidden'">`; }).join("");
+slides.innerHTML = HERO.map((k,i) => { used.add(k); return `<img class="slide${i?'':' on'}" src="${IMG[k].big}" alt="${esc(IMG[k].alt)}" ${i?'loading="lazy"':''} onerror="fb(this,'${k}')">`; }).join("");
 dots.innerHTML = HERO.map((k,i) => `<button type="button" class="${i?'':'on'}" aria-label="${esc(IMG[k].alt)}"></button>`).join("");
 let cur = 0;
 const show = i => { cur = i; slides.querySelectorAll(".slide").forEach((s,j)=>s.classList.toggle("on", j===i)); dots.querySelectorAll("button").forEach((d,j)=>d.classList.toggle("on", j===i));
@@ -569,15 +569,12 @@ const DEST = [
 ];
 document.getElementById("dest").innerHTML = DEST.map(([n,id,k,d,ni,sea]) => { used.add(k);
   return `<a class="dcard${sea?' sea':''}" href="#${id}"><div class="t"><h3>${n}</h3>${ICON.arrow}</div>
-  <div class="im"><img loading="lazy" src="${IMG[k].src}" alt="${esc(IMG[k].alt)}" ${onerr}></div>
+  <div class="im"><img loading="lazy" src="${IMG[k].src}" alt="${esc(IMG[k].alt)}" ${onerr(k)}></div>
   <div class="m"><span>From <b>${d}</b></span><span><b>${ni}</b> night${ni==="1"?"":"s"}</span></div></a>`; }).join("");
 
 document.getElementById("dates").innerHTML = [
-  ["24 Nov","Poya day","Full-moon holiday in Sri Lanka. No alcohol is sold."],
-  ["1 Dec","Scenic train","Ella to Nanu Oya at 09:50. Be at Ella station by 09:15."],
-  ["5 Dec","Fly to Malé","VJ-1815 at 12:15. Leave for the airport at 08:00."],
-  ["7 Dec","Anniversary","At Taj Exotica, with a sunset dhoni cruise.",1],
-  ["9 Dec","Kratisha's birthday","Birthday breakfast in the villa, dinner in Hulhumalé.",1],
+  ["7 Dec","Our anniversary","A slow day at Taj Exotica, a sunset dhoni cruise and an anniversary dinner.",1],
+  ["9 Dec","Kratisha's birthday","Birthday breakfast in the villa, the speedboat back, and a birthday dinner in Hulhumalé.",1],
 ].map(([d,l,x,c]) => `<div class="date${c?' cel':''}"><span class="d">${d}</span><span class="l">${l}</span><span>${x}</span></div>`).join("");
 
 /* ---------- chapters and days ---------- */
@@ -617,7 +614,7 @@ document.getElementById("chapters").innerHTML = CHAPTERS.map(c => {
         <p>${c.blurb}</p>
         <div class="stay"><span class="dot">${ICON.bed}</span><span><small>Staying at</small><b>${c.stay}</b></span></div>
       </div>
-      <div class="cphoto" data-k="${c.img}"><img loading="lazy" src="${m.big}" alt="${esc(m.alt)}" ${onerr}><div class="cap">${esc(m.alt)} · Photo: ${credit(c.img)}</div></div>
+      <div class="cphoto" data-k="${c.img}"><img loading="lazy" src="${m.big}" alt="${esc(m.alt)}" ${onerr(c.img)}><div class="cap">${esc(m.alt)} · Photo: ${credit(c.img)}</div></div>
     </div>
     ${c.strip.length ? `<div class="strip">${c.strip.map(k => fig(k)).join("")}</div>` : ""}
     <div class="days">${days}</div>
@@ -634,7 +631,7 @@ document.getElementById("flights").innerHTML = [
 ].map(([d,a,b,f,t,n]) => `<div class="pass"><span class="dt">${d}</span><span class="rt">${a} ${ICON.plane} ${b}</span><span class="fn"><span class="tm">${t}</span> · ${f}${n?` · ${n}`:''}</span></div>`).join("");
 const STAYIMG = ["kochi","weligama","leopard","ellagap","tooth","sigiriya","gallefacegreen","hulhumale","villas","beach"];
 document.getElementById("stays").innerHTML = STAYS.map(([n,w],i) => { const k = STAYIMG[i]; used.add(k);
-  return `<li><img loading="lazy" src="${IMG[k].thumb}" alt="" onerror="this.style.visibility='hidden'"><span><b>${w}</b><span>${n.replace(" · ", " · nights: ")}</span></span></li>`; }).join("");
+  return `<li><img loading="lazy" src="${IMG[k].thumb}" alt="" onerror="fb(this,'${k}')"><span><b>${w}</b><span>${n.replace(" · ", " · nights: ")}</span></span></li>`; }).join("");
 
 let saved = {};
 try { saved = JSON.parse(localStorage.getItem("slmv-todo") || "{}"); } catch(e) {}
@@ -654,7 +651,7 @@ const lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg
 document.addEventListener("click", e => {
   if (e.target.closest("a,button")) return;
   const el = e.target.closest("[data-k]"); if (!el || !lb.showModal) return;
-  const m = IMG[el.dataset.k]; lbImg.src = m.big; lbImg.alt = m.alt;
+  const m = IMG[el.dataset.k]; lbImg.onerror = () => fb(lbImg, m.key); delete lbImg.dataset.fb; lbImg.style.visibility = ""; lbImg.src = m.big; lbImg.alt = m.alt;
   lbCap.innerHTML = `${esc(m.alt)} · Photo: ${credit(m.key)}`; lb.showModal();
 });
 document.getElementById("lbClose").addEventListener("click", () => lb.close());
@@ -665,7 +662,13 @@ const renderCredits = () => { document.getElementById("credits").innerHTML = [..
   return `<li>${esc(m.alt)}: <a href="${m.page}" target="_blank" rel="noopener">${esc(m.file.replace(/_/g," "))}</a>${m.author?` by ${esc(m.author)}, ${esc(m.license)}`:""}</li>`; }).join(""); };
 renderCredits();
 (async () => {
-  const all = [...used].map(k => IMG[k]);
+  try {
+    const c = await (await fetch("credits.json")).json();
+    for (const [k, v] of Object.entries(c)) if (IMG[k]) { Object.assign(IMG[k], { author:v.author, license:v.license });
+      document.querySelectorAll(`[data-cr="${k}"]`).forEach(el => el.innerHTML = creditHTML(IMG[k])); }
+    renderCredits();
+  } catch (e) {}
+  const all = [...used].map(k => IMG[k]).filter(m => !m.author);
   const byTitle = {}; all.forEach(m => byTitle[("File:" + m.file).replace(/_/g," ")] = m);
   for (let i = 0; i < all.length; i += 40) {
     try {
