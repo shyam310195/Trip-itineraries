@@ -7,28 +7,27 @@
 <meta name="description" content="Kratisha and Shyam's trip itineraries, day by day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600&family=DM+Mono:wght@500&display=swap">
 <style>
 /* Layout: a shelf of trips, newest first. Each trip is one wide card with its photo, dates and route. */
 :root{
-  --paper:#F2F5EF; --card:#FFFFFF; --ink:#14261F; --muted:#56685F; --line:#D5DDD3; --leaf:#1D5A42; --saffron:#C8731F; --soft:#E1ECE4;
-  --f-display:"Gloock", Georgia, serif; --f-body:"Figtree", system-ui, sans-serif; --f-mono:"IBM Plex Mono", ui-monospace, monospace;
+  color-scheme:light;
+  --paper:#FBF5EA; --card:#FFFFFF; --ink:#1E3742; --muted:#667A82; --line:#EEE3D0; --leaf:#1677A6; --saffron:#EF6C4F; --soft:#E3F7F6;
+  --f-display:"Instrument Serif", Georgia, serif; --f-body:"Figtree", system-ui, sans-serif; --f-mono:"DM Mono", ui-monospace, monospace;
 }
-@media (prefers-color-scheme: dark){:root{
-  --paper:#0D1613; --card:#14201B; --ink:#E5EEE8; --muted:#9BB0A5; --line:#25362E; --leaf:#7CCBA2; --saffron:#F0A14E; --soft:#18302A; color-scheme:dark }}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--f-body)}
+body{margin:0;background:linear-gradient(180deg,#E3F7F6 0,#FBF5EA 420px);color:var(--ink);font:16px/1.6 var(--f-body)}
 .wrap{max-width:980px;margin:0 auto;padding:64px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px))}
 .eyebrow{font:500 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 h1,h2{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.1;text-wrap:balance}
-h1{font-size:clamp(44px,8vw,80px);margin:10px 0 10px}
+h1{font-size:clamp(56px,9vw,96px);margin:10px 0 10px}
 .lede{font-size:19px;color:var(--muted);max-width:34em;margin:0 0 40px}
 .trips{display:grid;gap:18px}
-a.trip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;color:inherit;text-decoration:none;transition:border-color .15s, transform .15s}
+a.trip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 8px 24px -12px rgba(30,55,66,.2);overflow:hidden;color:inherit;text-decoration:none;transition:border-color .15s, transform .15s}
 a.trip:hover{border-color:var(--leaf);transform:translateY(-2px)}
 a.trip:focus-visible{outline:2px solid var(--saffron);outline-offset:3px}
 @media (prefers-reduced-motion: reduce){a.trip{transition:none}a.trip:hover{transform:none}}
-.ph{min-height:220px;background:var(--soft) center/cover no-repeat}
+.ph{min-height:220px;background-color:#BFEDEB center/cover no-repeat}
 .tx{padding:26px 26px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .tx h2{font-size:clamp(28px,4vw,38px)}
 .tx p{margin:0;color:var(--muted)}
