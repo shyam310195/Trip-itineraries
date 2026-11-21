@@ -268,7 +268,7 @@ dialog#lb button{font:700 14px var(--f-body);background:#fff;color:var(--ink);bo
   <div class="wrap"><div class="stats" id="stats"></div></div>
 
   <section class="block" id="where"><div class="wrap">
-    <div class="shead"><div><div class="kicker">Where we're going</div><h2>Ten nights of beach, eight of everything else</h2></div>
+    <div class="shead"><div><div class="kicker">Where we're going</div><h2>Ten nights of beach, nine of everything else</h2></div>
       <p>Every stay on the route, in order. Tap one to jump to its days.</p></div>
     <div class="dest" id="dest"></div>
   </div></section>
@@ -392,7 +392,7 @@ const IMAGES = {
 const HERO = ["aerial","weligama","secretbeach","maafushi"];
 
 const CHAPTERS = [
-  { id:"kochi", nav:"Kochi", label:"Prelude", title:"Kochi", dates:"Sat 21 – Mon 23 Nov", nights:"1 night + night flights", img:"kochi2", strip:[],
+  { id:"kochi", nav:"Kochi", label:"Prelude", title:"Kochi", dates:"Sat 21 – Mon 23 Nov", nights:"2 nights", img:"kochi2", strip:[],
     blurb:"A day in Kerala with friends before the overnight hop to Colombo via Chennai.", stay:"A friend's place" },
   { id:"south", nav:"South coast", label:"Chapter I", title:"Weligama &amp; the south coast", dates:"Mon 23 – Sat 28 Nov", nights:"5 nights", img:"weligama", strip:["mirissa","galleview","unawatuna","stilt","parrot"],
     blurb:"Five nights on the bay: beaches, Galle Fort at sunset, a reef dive, the whale boat, stilt fishermen and a river safari.", stay:"Weligama Bay Marriott, ocean view" },
@@ -483,7 +483,7 @@ const TODO = [
   "ETA for both of us",
 ];
 
-const ROUTE = [["Kochi","1"],["Weligama","5"],["Yala","1"],["Ella","2"],["Kandy","1"],["Sigiriya","2"],["Colombo","1"],["Hulhumalé","1",1],["Taj Exotica","3",1],["Hulhumalé","1",1]];
+const ROUTE = [["Kochi","2"],["Weligama","5"],["Yala","1"],["Ella","2"],["Kandy","1"],["Sigiriya","2"],["Colombo","1"],["Hulhumalé","1",1],["Taj Exotica","3",1],["Hulhumalé","1",1]];
 
 
 /* ---------- icons ---------- */
@@ -559,7 +559,7 @@ let timer = reduce ? null : setInterval(() => show((cur + 1) % HERO.length), 600
 const moments = DAYS.reduce((a,d) => a + d.items.length, 0);
 const nights = ROUTE.reduce((a,[,n]) => a + Number(n), 0);
 const places = new Set(DAYS.flatMap(d => d.items.filter(i => i[2]).map(i => i[2]))).size;
-document.getElementById("stats").innerHTML = [[DAYS.length,"days"],[nights,"nights, plus one on a plane"],[places,"sights and stops"],[moments,"moments on the plan"]]
+document.getElementById("stats").innerHTML = [[DAYS.length,"days"],[nights,"nights"],[places,"sights and stops"],[moments,"activities planned"]]
   .map(([n,l]) => `<div><strong>${n}</strong><span>${l}</span></div>`).join("");
 
 /* destination cards: one per stay, in route order */
