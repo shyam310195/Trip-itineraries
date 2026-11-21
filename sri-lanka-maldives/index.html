@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sri Lanka to Maldives</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Kratisha and Shyam's trip: Sri Lanka's south coast, tea country and ancient cities, then the Maldives for an anniversary and a birthday. 21 Nov to 10 Dec 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a long travel journal. Each stay is a chapter band with its photo; each day is a tappable card that opens into an hour-by-hour timeline. */
+:root{
+  --paper:#F2F5EF; --card:#FFFFFF; --ink:#14261F; --muted:#56685F; --line:#D5DDD3;
+  --leaf:#1D5A42; --lagoon:#0B7480; --saffron:#C8731F; --saffron-soft:#FBEBD9; --leaf-soft:#E1ECE4;
+  --shade:rgba(10,24,18,.55);
+  --f-display:"Gloock", "Iowan Old Style", Georgia, serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0D1613; --card:#14201B; --ink:#E5EEE8; --muted:#9BB0A5; --line:#25362E;
+  --leaf:#7CCBA2; --lagoon:#5CC6CF; --saffron:#F0A14E; --saffron-soft:#3A2814; --leaf-soft:#18302A;
+  --shade:rgba(0,0,0,.6); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0D1613; --card:#14201B; --ink:#E5EEE8; --muted:#9BB0A5; --line:#25362E;
+  --leaf:#7CCBA2; --lagoon:#5CC6CF; --saffron:#F0A14E; --saffron-soft:#3A2814; --leaf-soft:#18302A;
+  --shade:rgba(0,0,0,.6); color-scheme:dark }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:var(--lagoon);text-underline-offset:2px}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:6px}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.eyebrow{font:500 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--paper)}
+nav.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:9;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:18px;align-items:center;height:56px;overflow-x:auto;scrollbar-width:none}
+nav.top .wrap::-webkit-scrollbar{display:none}
+nav.top .brand{font-family:var(--f-display);font-size:19px;white-space:nowrap;color:var(--ink);text-decoration:none;margin-right:auto}
+nav.top a.l{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap}
+nav.top a.l:hover{color:var(--ink)}
+
+/* hero */
+.hero{position:relative;color:#fff;min-height:540px;display:flex;align-items:flex-end;background:#16322A}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,15,.15) 0%,rgba(8,20,15,.25) 40%,rgba(8,20,15,.82) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:64px 36px}
+.hero .eyebrow{color:rgba(255,255,255,.82)}
+.hero h1{font-size:clamp(44px,8vw,92px);margin:10px 0 12px;letter-spacing:-.01em}
+.hero h1 .arrow{color:#F3B26A}
+.hero p.sub{font-size:clamp(17px,2.2vw,21px);max-width:40em;margin:0;color:rgba(255,255,255,.92)}
+.hero .credit{position:absolute;right:max(16px, env(safe-area-inset-right, 0px));top:12px;z-index:1;font:11px var(--f-mono);color:rgba(255,255,255,.75)}
+.hero .credit a{color:inherit}
+
+/* route */
+.route{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:26px;font:500 13px/1 var(--f-mono)}
+.route span{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;background:rgba(255,255,255,.14);border-radius:999px;margin-right:6px;white-space:nowrap}
+.route b{font-weight:500;color:#F3B26A}
+.route i{font-style:normal;opacity:.7;margin-right:6px}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:-28px;position:relative;z-index:2}
+.stats div{background:var(--card);padding:18px 16px}
+.stats strong{display:block;font:400 34px/1 var(--f-display);color:var(--leaf);font-variant-numeric:tabular-nums}
+.stats span{font-size:13px;color:var(--muted)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.intro{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;padding-block:56px 24px;align-items:start}
+.intro p{margin:0 0 12px;max-width:38em}
+.intro h2{font-size:clamp(30px,4vw,42px);margin-bottom:16px}
+.dates-card{background:var(--saffron-soft);border-radius:var(--r);padding:20px 22px}
+.dates-card h3{font-size:22px;margin-bottom:10px;color:var(--saffron)}
+.dates-card ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.dates-card li{display:grid;grid-template-columns:76px 1fr;gap:10px}
+.dates-card .d{font:500 13px/1.6 var(--f-mono);color:var(--saffron)}
+@media (max-width:760px){.intro{grid-template-columns:1fr;gap:24px}}
+.hint{font:500 13px var(--f-mono);color:var(--muted);margin-top:6px}
+
+/* chapter */
+.chapter{padding-block:40px 8px}
+.ch-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.ch-head figure{margin:0;position:relative;min-height:260px;background:var(--leaf-soft)}
+.ch-head figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ch-text{padding:28px 28px 24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ch-text h2{font-size:clamp(30px,4vw,44px)}
+.ch-text .meta{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font:500 12px/1 var(--f-mono);padding:6px 9px;border-radius:999px;background:var(--leaf-soft);color:var(--leaf);white-space:nowrap}
+.pill.warm{background:var(--saffron-soft);color:var(--saffron)}
+.ch-text p{margin:0;color:var(--muted);max-width:36em}
+.ch-text .stay{font-size:14px;color:var(--ink)}
+.ch-text .stay b{font-weight:600}
+@media (max-width:760px){.ch-head{grid-template-columns:1fr}.ch-head figure{min-height:220px}}
+figcaption.cr{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 6px;font:11px/1.3 var(--f-mono);color:rgba(255,255,255,.85);background:linear-gradient(transparent,rgba(0,0,0,.55))}
+figcaption.cr a{color:inherit}
+figure.noimg img{visibility:hidden}
+
+/* days */
+.days{display:grid;gap:12px;margin-top:14px}
+details.day{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+details.day[open]{border-color:color-mix(in srgb, var(--leaf) 45%, var(--line))}
+details.day.celebrate{border-color:var(--saffron);box-shadow:0 0 0 3px var(--saffron-soft)}
+details.day summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:76px minmax(0,1fr) 92px;gap:16px;align-items:center;padding:14px 16px}
+details.day summary::-webkit-details-marker{display:none}
+.dnum{font:400 30px/1 var(--f-display);color:var(--leaf);font-variant-numeric:tabular-nums}
+.dnum small{display:block;font:500 11px/1.4 var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.dsum{min-width:0}
+.dsum h3{font-size:22px;margin-bottom:4px}
+.dsum p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.45}
+.dsum .tag{display:inline-block;margin-bottom:6px}
+.dthumb{width:92px;height:68px;border-radius:10px;overflow:hidden;background:var(--leaf-soft)}
+.dthumb img{width:100%;height:100%;object-fit:cover}
+@media (max-width:560px){details.day summary{grid-template-columns:58px minmax(0,1fr)}.dthumb{display:none}.dnum{font-size:26px}}
+.dbody{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;padding:4px 16px 20px 108px}
+@media (max-width:860px){.dbody{grid-template-columns:1fr;padding-left:16px}}
+ol.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+ol.tl li{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;padding:7px 0 7px 14px;position:relative}
+ol.tl li::before{content:"";position:absolute;left:-6px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--card);border:2px solid var(--leaf)}
+ol.tl li.key::before{background:var(--leaf)}
+ol.tl li.cel::before{background:var(--saffron);border-color:var(--saffron)}
+ol.tl .t{font:500 13px/1.7 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+ol.tl .x{font-size:15px;line-height:1.5}
+ol.tl .x b{font-weight:600}
+ol.tl .x a{font-size:13px;white-space:nowrap}
+@media (max-width:480px){ol.tl li{grid-template-columns:1fr;gap:0}}
+.side{display:grid;gap:12px;align-content:start}
+.side figure{margin:0;position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--leaf-soft);max-width:100%}
+.side figure img{width:100%;height:100%;object-fit:cover}
+.note{font-size:14px;background:var(--leaf-soft);border-radius:12px;padding:12px 14px}
+.note.warm{background:var(--saffron-soft)}
+.note b{font-weight:600}
+.stayline{font-size:14px;color:var(--muted)}
+.stayline b{color:var(--ink);font-weight:600}
+
+/* practical */
+section.practical{padding-block:56px 24px}
+section.practical > .wrap > h2{font-size:clamp(32px,4.5vw,48px);margin-bottom:6px}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+@media (max-width:760px){.pgrid{grid-template-columns:1fr}}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 20px 16px;min-width:0}
+.pcard h3{font-size:24px;margin-bottom:12px}
+.pcard.wide{grid-column:1 / -1}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+.tw{overflow-x:auto}
+th,td{text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td.m{font-family:var(--f-mono);font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}
+ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px}
+ul.checks{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+ul.checks label{display:flex;gap:10px;align-items:flex-start;padding:6px 0;cursor:pointer;font-size:15px}
+ul.checks input{margin-top:4px;accent-color:var(--leaf);width:16px;height:16px;flex:none}
+ul.checks input:checked + span{color:var(--muted);text-decoration:line-through}
+
+footer{border-top:1px solid var(--line);margin-top:48px;padding-block:36px 48px;color:var(--muted);font-size:14px}
+footer h2{font-size:34px;color:var(--ink);margin-bottom:8px}
+footer details{margin-top:18px}
+footer summary{cursor:pointer;font-weight:600;color:var(--ink)}
+footer ol{font-size:13px;line-height:1.5;padding-left:20px;columns:2;column-gap:32px}
+@media (max-width:640px){footer ol{columns:1}}
+footer li{break-inside:avoid;margin-bottom:6px}
+</style>
+</head>
+<body>
+
+
+<nav class="top" aria-label="Sections">
+  <div class="wrap" id="nav"></div>
+</nav>
+
+<header class="hero" id="journey">
+  <img class="bg" id="heroImg" alt="" onerror="this.style.visibility='hidden'">
+  <div class="credit" id="heroCredit"></div>
+  <div class="wrap">
+    <div class="eyebrow">Kratisha &amp; Shyam · 21 November – 10 December 2026</div>
+    <h1>Sri Lanka <span class="arrow">→</span> Maldives</h1>
+    <p class="sub">Twenty days, two travellers. Surf towns and whale boats on the south coast, leopards at Yala, the tea-country train, Kandy's temple at dusk, the ancient cities, then a lagoon for an anniversary and a birthday.</p>
+    <div class="route" id="route"></div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap"><div class="stats" id="stats"></div></div>
+
+  <section class="wrap intro">
+    <div>
+      <div class="eyebrow">The plan</div>
+      <h2>Full days, one loop, then the sea</h2>
+      <p>We land in Colombo in the small hours of 23 November and head straight down to Weligama. From there the road loops east to Yala, climbs into the hills at Ella, takes the train through the tea estates, and drops to Kandy and the Cultural Triangle before ending in Colombo.</p>
+      <p>On 5 December we fly to Malé for a night in Hulhumalé, three nights in an overwater villa, and one more night by the airport before flying home to Bengaluru.</p>
+      <p>Everything goes by road with a private driver, except one scenic train ride. No big climbs.</p>
+      <p class="hint">Tap a day to open its hour-by-hour plan.</p>
+    </div>
+    <aside class="dates-card" aria-label="Dates to remember">
+      <h3>Dates to remember</h3>
+      <ul>
+        <li><span class="d">24 Nov</span><span>Poya (full-moon) day in Sri Lanka. No alcohol is sold.</span></li>
+        <li><span class="d">1 Dec</span><span>Scenic train, Ella to Nanu Oya, 09:50. Be at Ella station by 09:15.</span></li>
+        <li><span class="d">5 Dec</span><span>Fly Colombo to Malé, 12:15. Leave for the airport at 08:00.</span></li>
+        <li><span class="d">7 Dec</span><span><b>Our anniversary</b>, at Taj Exotica, with a sunset dhoni cruise.</span></li>
+        <li><span class="d">9 Dec</span><span><b>Kratisha's birthday</b>, with dinner in Hulhumalé.</span></li>
+      </ul>
+    </aside>
+  </section>
+
+  <div id="chapters"></div>
+
+  <section class="practical" id="practical">
+    <div class="wrap">
+      <div class="eyebrow">Before you go &amp; on the ground</div>
+      <h2>Practical</h2>
+      <div class="pgrid">
+        <div class="pcard wide">
+          <h3>Flights</h3>
+          <div class="tw"><table>
+            <thead><tr><th>Date</th><th>Flight</th><th>Route</th><th>Times</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td class="m">Sat 21 Nov</td><td>Akasa QP-1361</td><td>Bengaluru T1 → Kochi</td><td class="m">15:30 – 16:45</td><td>15 kg bag each</td></tr>
+              <tr><td class="m">Sun 22 Nov</td><td>IndiGo 6E-387</td><td>Kochi → Chennai T1</td><td class="m">21:45 – 23:00</td><td></td></tr>
+              <tr><td class="m">Mon 23 Nov</td><td>IndiGo 6E-1171</td><td>Chennai T2 → Colombo</td><td class="m">00:40 – 02:00</td><td></td></tr>
+              <tr><td class="m">Sat 5 Dec</td><td>VietJet VJ-1815</td><td>Colombo → Malé</td><td class="m">12:15 – 13:10</td><td>20 kg bag each</td></tr>
+              <tr><td class="m">Thu 10 Dec</td><td>IndiGo 6E-1128</td><td>Malé → Bengaluru</td><td class="m">16:05 – 18:30</td><td></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="pcard">
+          <h3>Where we sleep</h3>
+          <div class="tw"><table>
+            <thead><tr><th>Nights</th><th>Where</th></tr></thead>
+            <tbody id="stays"></tbody>
+          </table></div>
+        </div>
+        <div class="pcard">
+          <h3>Getting around</h3>
+          <ul class="plain">
+            <li><b>Sri Lanka, 23 Nov – 5 Dec:</b> a private car and driver (Lion Cab &amp; Tours) from the 02:45 airport pickup to the airport drop on 5 Dec.</li>
+            <li><b>1 Dec:</b> the scenic train from Ella to Nanu Oya, first class. The driver takes the bags ahead and meets us at Nanu Oya.</li>
+            <li><b>Maldives:</b> the Hulhumalé hotel's airport transfers both ways, and the resort's shared speedboat on 6 and 9 Dec.</li>
+          </ul>
+        </div>
+        <div class="pcard">
+          <h3>Still to arrange</h3>
+          <p class="hint" style="margin:0 0 6px">Ticks are saved in this browser only.</p>
+          <ul class="checks" id="todo"></ul>
+        </div>
+        <div class="pcard">
+          <h3>Good to know</h3>
+          <ul class="plain">
+            <li>Sri Lanka needs an ETA (electronic travel authorisation) for each of us before landing.</li>
+            <li>Many sights sell tickets at the gate: Temple of the Tooth, Peradeniya, Dambulla, Polonnaruwa, the Sigiriya water gardens and Pinnawala.</li>
+            <li>The VietJet allowance is 20 kg per bag. Weigh the bags on the night of 4 Dec.</li>
+            <li>The Maldives green tax is paid at the Hulhumalé hotel on check-in.</li>
+            <li>Carry a copy of the wedding card for the resort's honeymoon cake.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Bon voyage</h2>
+    <p>Sri Lanka · Maldives · 21 November – 10 December 2026 · two travellers.</p>
+    <p>Times are our own planning estimates, built around the bookings we hold. Opening hours and prices change, so check them on the day.</p>
+    <p>Photos are from <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a> and are freely licensed. Each photo shows its author and licence and links to its source page. They show the places, not our own trip.</p>
+    <details>
+      <summary>All photo credits</summary>
+      <ol id="credits"></ol>
+    </details>
+  </div>
+</footer>
+
+<script>
+const IMAGES = {
+ "kochi": {
+  "file": "Chinese_fishing_net,Fort_Kochi.jpg",
+  "alt": "Chinese fishing net at Fort Kochi"
+ },
+ "weligama": {
+  "file": "Weligama_Beach_in_Sri_Lanka.jpg",
+  "alt": "Weligama beach"
+ },
+ "coconut": {
+  "file": "Coconut_Tree_Hill,_Sri_Lanka.jpg",
+  "alt": "Coconut Tree Hill near Mirissa"
+ },
+ "galle": {
+  "file": "Galle_Fort_Light_House.jpg",
+  "alt": "Galle Fort lighthouse"
+ },
+ "unawatuna": {
+  "file": "Jungle_beach_unawatuna.jpg",
+  "alt": "Jungle Beach, Unawatuna"
+ },
+ "stilt": {
+  "file": "Stilt_fishing_-Koggala,Sri_Lanka.jpg",
+  "alt": "Stilt fishermen at Koggala"
+ },
+ "whale": {
+  "file": "Blue_Whale_(Balaenoptera_musculus)_(16108163937).jpg",
+  "alt": "A blue whale surfacing"
+ },
+ "mirissa": {
+  "file": "View_from_Coconut_Tree_Hill_to_Mirissa_in_March.jpg",
+  "alt": "Mirissa bay from Coconut Tree Hill"
+ },
+ "bundala": {
+  "file": "Bundala_National_Park.jpg",
+  "alt": "Bundala National Park"
+ },
+ "leopard": {
+  "file": "Sri_Lankan_Leopard_-_Yala_National_Park.jpg",
+  "alt": "Sri Lankan leopard in Yala National Park"
+ },
+ "ninearch": {
+  "file": "Nine_Arch_Bridge_Ella.jpg",
+  "alt": "Nine Arch Bridge, Ella"
+ },
+ "lipton": {
+  "file": "Lipton's_Seat_Tea_Estate.jpg",
+  "alt": "Tea estate at Lipton's Seat"
+ },
+ "tea": {
+  "file": "Sri_Lanka,_Tea_plantations,_Nuwara_Eliya.jpg",
+  "alt": "Tea plantations near Nuwara Eliya"
+ },
+ "gregory": {
+  "file": "Nuwara_Eliya_Gregory_Lake.jpg",
+  "alt": "Gregory Lake, Nuwara Eliya"
+ },
+ "tooth": {
+  "file": "Temple_of_the_Tooth,_Kandy.jpg",
+  "alt": "Temple of the Tooth, Kandy"
+ },
+ "peradeniya": {
+  "file": "Botanical_Garden_of_Peradeniya_01.jpg",
+  "alt": "Peradeniya Botanical Garden"
+ },
+ "sigiriya": {
+  "file": "The_Lion_Rock,_Sigiriya,_Sri_Lanka.jpg",
+  "alt": "Sigiriya, the Lion Rock"
+ },
+ "dambulla": {
+  "file": "Rangiri_Dambulla_Temple.jpg",
+  "alt": "Dambulla cave temple"
+ },
+ "galvihara": {
+  "file": "Gal_Vihara_Polonnaruwa_1.jpg",
+  "alt": "Gal Vihara Buddhas, Polonnaruwa"
+ },
+ "elephants": {
+  "file": "Elephas_maximus_maximus_-_01.jpg",
+  "alt": "Sri Lankan elephants"
+ },
+ "pinnawala": {
+  "file": "The_Pinnawala_Elephant_Orphanage.jpg",
+  "alt": "Elephants at Pinnawala"
+ },
+ "gallefacegreen": {
+  "file": "Galle_Face_Green_-_sunset.jpg",
+  "alt": "Galle Face Green at sunset"
+ },
+ "lotus": {
+  "file": "Nelum_kuluna_lotus_tower_wide_angle_view.jpg",
+  "alt": "Lotus Tower, Colombo"
+ },
+ "hulhumale": {
+  "file": "Hulhumale,_Maldives_(hulhumale).jpg",
+  "alt": "Hulhumalé, Maldives"
+ },
+ "villas": {
+  "file": "The_Residence_MALDIVES_water_villas.jpg",
+  "alt": "Overwater villas in the Maldives"
+ },
+ "dhoni": {
+  "file": "Traditional_Maldivian_Dhoni.jpg",
+  "alt": "A traditional Maldivian dhoni"
+ },
+ "sunset": {
+  "file": "Peaceful_Sunset_(Maldives).jpg",
+  "alt": "Sunset in the Maldives"
+ },
+ "reef": {
+  "file": "Acropora_millepora_Maldives.jpg",
+  "alt": "Coral on a Maldives reef"
+ },
+ "beach": {
+  "file": "Beach_in_the_Maldives.jpg",
+  "alt": "A beach in the Maldives"
+ }
+};
+
+const CHAPTERS = [
+  { id:"kochi", nav:"Kochi", label:"Prelude", title:"Kochi", dates:"Sat 21 – Mon 23 Nov", nights:"1 night + overnight flights", img:"kochi",
+    blurb:"A day in Kerala with friends before the overnight hop to Colombo via Chennai.",
+    stay:"A friend's place" },
+  { id:"south", nav:"South coast", label:"Chapter I", title:"Weligama and the south coast", dates:"Mon 23 – Sat 28 Nov", nights:"5 nights", img:"weligama",
+    blurb:"Beaches, Galle Fort at sunset, a reef dive, the whale boat, stilt fishermen and a river safari.",
+    stay:"Weligama Bay Marriott, ocean view" },
+  { id:"yala", nav:"Yala", label:"Chapter II", title:"Yala", dates:"Sat 28 – Sun 29 Nov", nights:"1 night", img:"leopard",
+    blurb:"Two jeep safaris for leopards and elephants, flamingos at Bundala, and the evening puja at Kataragama.",
+    stay:"Laya Safari Hotel, Palatupana" },
+  { id:"ella", nav:"Ella", label:"Chapter III", title:"Ella and the hill country", dates:"Sun 29 Nov – Tue 1 Dec", nights:"2 nights", img:"ninearch",
+    blurb:"The Nine Arch Bridge, breakfast at Lipton's Seat above the tea, waterfalls and a zipline.",
+    stay:"Vantage Hills, Ella" },
+  { id:"kandy", nav:"Kandy", label:"Chapter IV", title:"Tea-country train and Kandy", dates:"Tue 1 – Wed 2 Dec", nights:"1 night", img:"tooth",
+    blurb:"The scenic train to Nanu Oya, Nuwara Eliya's lake, then the Temple of the Tooth at dusk.",
+    stay:"Radisson Hotel Kandy" },
+  { id:"sigiriya", nav:"Sigiriya", label:"Chapter V", title:"Sigiriya and the ancient cities", dates:"Wed 2 – Fri 4 Dec", nights:"2 nights", img:"sigiriya",
+    blurb:"Peradeniya's gardens, the water gardens below Lion Rock, Dambulla's caves, Polonnaruwa and the Minneriya elephants.",
+    stay:"Sigiriya Jungles Resort &amp; Spa, Kimbissa" },
+  { id:"colombo", nav:"Colombo", label:"Chapter VI", title:"Colombo", dates:"Fri 4 – Sat 5 Dec", nights:"1 night", img:"gallefacegreen",
+    blurb:"The long last day: Ritigala, Pinnawala, then Galle Face Green at sunset and dinner at the Dutch Hospital.",
+    stay:"Colombo hotel (to be confirmed)" },
+  { id:"maldives", nav:"Maldives", label:"Chapter VII", title:"The Maldives", dates:"Sat 5 – Thu 10 Dec", nights:"5 nights", img:"villas",
+    blurb:"Hulhumalé, then three nights in an overwater villa for our anniversary, and Kratisha's birthday on the way home.",
+    stay:"Lonuveli, Hulhumalé · Taj Exotica, overwater villa with pool · Lonuveli, Hulhumalé" },
+];
+
+const P = q => "https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(q);
+
+// items: [time, html, photoQuery?, kind?]  kind: "key" = highlight, "cel" = celebration
+const DAYS = [
+  { ch:"kochi", date:"Sat 21 Nov", title:"Off to Kerala", sum:"Fly Bengaluru to Kochi and spend the evening with friends.", img:"kochi", stay:"A friend's place, Kochi",
+    items:[["15:30 – 16:45","Akasa QP-1361, Bengaluru T1 to Kochi"],["Evening","With friends in Kochi"]] },
+  { ch:"kochi", date:"Sun 22 Nov", title:"Kochi, then the night flights", sum:"A free day in Kochi, then the late flight to Chennai.", img:"kochi", stay:"Overnight flights",
+    items:[["Day","Free in Kochi (not planned)"],["21:45 – 23:00","IndiGo 6E-387, Kochi to Chennai T1"]] },
+  { ch:"south", date:"Mon 23 Nov", title:"Landing at 2 a.m., sunset on Coconut Tree Hill", sum:"Drive to Weligama in the dark, sleep, then the beach and the sunset hill.", img:"weligama", side:["coconut"], stay:"Weligama Bay Marriott",
+    items:[["00:40 – 02:00","IndiGo 6E-1171, Chennai T2 to Colombo"],["02:00","Land. ETA check, SIM card and cash"],["02:45 – 05:00","Driver meets us; drive to Weligama (early check-in requested)"],["05:00 – 11:00","Sleep. 11:30 brunch"],["14:00 – 16:30","Weligama beach and the Taprobane Island view","Taprobane island Weligama","key"],["17:00 – 18:30","Coconut Tree Hill sunset","Coconut Tree Hill Mirissa","key"],["19:00","Dinner on Mirissa beach. Back about 21:00"]] },
+  { ch:"south", date:"Tue 24 Nov", title:"Lighthouse, blowhole, Galle Fort", sum:"East to Dondra and Matara, the Hummanaya blowhole, then sunset on the Galle Fort ramparts.", img:"galle", stay:"Weligama Bay Marriott",
+    note:"Poya (full-moon) day: no alcohol is sold anywhere in Sri Lanka.",
+    items:[["08:30","Leave"],["09:15 – 10:00","Dondra Head lighthouse","Dondra Head lighthouse"],["10:30 – 12:00","Matara: Paravi Duwa temple and the Star Fort","Paravi Duwa temple Matara"],["12:00","Lunch"],["13:30 – 15:00","Hummanaya blowhole (steps down to the viewpoint)","Hummanaya blowhole"],["16:30 – 19:00","<b>Galle Fort</b>, with sunset on the ramparts (about 1.5 h drive from Hummanaya)","Galle Fort ramparts sunset","key"],["19:00","Dinner in the fort. Back about 21:30"]] },
+  { ch:"south", date:"Wed 25 Nov", title:"Reef dive and Hiriketiya", sum:"A discover-scuba dive at Unawatuna, the Peace Pagoda, then a swim and sunset at Hiriketiya.", img:"unawatuna", stay:"Weligama Bay Marriott",
+    items:[["07:30","Leave"],["08:15 – 12:00","<b>Scuba dive</b> with Sun Diving, Rock Island at 10 m (<a href=\"https://www.travelocity.com/things-to-do/discover-scuba-diving-in-beautiful-unawatuna-bay.a2332923.activity-details\" target=\"_blank\" rel=\"noopener\">listing</a>)","Unawatuna scuba diving","key"],["12:00","Lunch in Unawatuna"],["13:30 – 14:30","Japanese Peace Pagoda and Jungle Beach","Japanese Peace Pagoda Unawatuna"],["16:00 – 19:00","Hiriketiya bay: swim and sunset (about 1.5 h drive)","Hiriketiya beach"],["19:30","Dinner at Hiriketiya. Back about 20:45"]] },
+  { ch:"south", date:"Thu 26 Nov", title:"Whale boat and stilt fishermen", sum:"Out to sea from Mirissa at dawn, then Koggala's turtles, stilt fishermen and lake.", img:"stilt", side:["whale"], stay:"Weligama Bay Marriott",
+    items:[["06:30 – 11:30","<b>Whale watching</b> from Mirissa (<a href=\"https://nomadicboys.com/whale-watching-mirissa/\" target=\"_blank\" rel=\"noopener\">guide</a>)","Mirissa blue whale watching","key"],["12:00","Lunch"],["13:30 – 14:30","Turtle hatchery, Koggala area","Koggala turtle hatchery"],["15:00 – 15:30","Stilt fishermen","Koggala stilt fishermen"],["15:45 – 17:30","Koggala Lake boat ride","Koggala lake boat cinnamon island"],["18:00","Ahangama sunset, then dinner. Back about 20:30"]] },
+  { ch:"south", date:"Fri 27 Nov", title:"Surf lesson and the Madu River", sum:"A morning surf lesson, a mangrove boat safari, and a last sunset at Parrot Rock.", img:"mirissa", stay:"Weligama Bay Marriott",
+    note:"If the whale boat on 26 Nov is cancelled, this day becomes the backup and the Madu River trip drops out.",
+    items:[["07:00 – 09:00","Beginner surf lesson","Weligama surf lesson","key"],["09:30 – 15:30","Madu River boat safari, Balapitiya (about 1.5 h each way), with lunch there","Madu River boat safari"],["16:00 – 18:30","Mirissa Secret Beach and Parrot Rock","Mirissa Parrot Rock"],["19:30","Farewell dinner, then pack. Back about 20:30"]] },
+  { ch:"yala", date:"Sat 28 Nov", title:"Flamingos, then leopards", sum:"Bundala's lagoons in the morning, Tissa and Kirinda, an afternoon Yala safari, and Kataragama's evening puja.", img:"leopard", side:["bundala"], stay:"Laya Safari Hotel",
+    items:[["05:00","Check out with a breakfast box"],["07:30 – 10:30","Bundala bird safari","Bundala national park flamingo"],["11:00 – 11:45","Tissa Wewa and the stupa","Tissamaharama stupa Tissa Wewa"],["12:00 – 12:45","Kirinda temple and beach (short steps)","Kirinda temple rock"],["13:00","Lunch at Laya Safari; check-in from 14:00"],["14:30 – 18:00","<b>Yala safari 1</b> (<a href=\"https://www.pelago.com/en/activity/p310ohauq-yala-national-park-private-safari-yala-national-park\" target=\"_blank\" rel=\"noopener\">private jeep</a>)","Yala leopard safari","key"],["18:45 – 20:30","Kataragama evening puja","Kataragama evening puja"],["21:00","Dinner at the lodge"]] },
+  { ch:"ella", date:"Sun 29 Nov", title:"Dawn safari, then up to Ella", sum:"A second Yala drive at sunrise, Ravana Falls on the climb, and the Nine Arch Bridge.", img:"ninearch", stay:"Vantage Hills, Ella",
+    items:[["05:30 – 10:00","<b>Yala safari 2</b>","Yala elephant safari","key"],["10:00","Breakfast, then check out"],["11:00 – 13:30","Drive to Ella, stopping at Ravana Falls","Ravana Falls Ella"],["14:00","Check in"],["15:00 – 17:00","<b>Nine Arch Bridge</b>","Nine Arch Bridge Ella train","key"],["17:30","Sunset over Ella Gap"],["19:30","Dinner in town. Back about 21:00"]] },
+  { ch:"ella", date:"Mon 30 Nov", title:"Lipton's Seat and the zipline", sum:"Breakfast above the tea estates, Dambatenne factory, Diyaluma Falls, a zipline and the Demodara Loop.", img:"lipton", stay:"Vantage Hills, Ella",
+    items:[["05:45","Leave"],["06:45 – 08:45","<b>Lipton's Seat</b>, with breakfast at the top","Lipton's Seat Haputale","key"],["09:00 – 10:00","Dambatenne Tea Factory","Dambatenne tea factory"],["11:15 – 12:00","Diyaluma Falls (roadside view)","Diyaluma falls"],["13:15","Lunch in Ella"],["14:30 – 15:30","Zipline (<a href=\"https://www.expedia.com/things-to-do/zip-lining-experience-in-ella.a46550508.activity-details\" target=\"_blank\" rel=\"noopener\">ZRI Adventures</a>)","Flying Ravana zipline Ella"],["16:00 – 17:15","Demodara Loop","Demodara loop"],["17:45","Sunset. 19:30 dinner. Back about 20:30"]] },
+  { ch:"kandy", date:"Tue 1 Dec", title:"The tea-country train to Kandy", sum:"Ella to Nanu Oya by train, Gregory Lake, Ramboda Falls, and the Temple of the Tooth at night.", img:"tooth", side:["tea","gregory"], stay:"Radisson Hotel Kandy (late check-in, about 22:00)",
+    items:[["08:00","Breakfast, then check out. The driver takes the bags ahead to Nanu Oya"],["09:50 – 12:10","<b>Scenic train, Ella to Nanu Oya</b>, first class. Be at Ella station by 09:15","ella nanu oya train tea country","key"],["12:30 – 14:15","Nuwara Eliya: Gregory Lake, a boat ride and Victoria Park, and lunch","Gregory Lake boat Nuwara Eliya"],["14:30 – 15:15","Tea factory tour","Nuwara Eliya tea estate"],["15:45 – 16:00","Ramboda Falls","Ramboda Falls"],["About 18:15","Reach Kandy and go straight to the temple"],["18:30 – 19:45","<b>Temple of the Tooth</b> evening puja (open until 20:00)","Temple of the Tooth Kandy evening","key"],["19:45","Kandy Lake walk"],["20:00 – 20:30","Bahiravokanda Buddha, lit up","Bahirawakanda Buddha Kandy"],["20:45","Dinner, then check in"]] },
+  { ch:"sigiriya", date:"Wed 2 Dec", title:"Gardens, spices and Lion Rock", sum:"Peradeniya's botanic garden, Matale, then the water gardens at the foot of Sigiriya and a tank-bund sunset.", img:"sigiriya", side:["peradeniya"], stay:"Sigiriya Jungles Resort &amp; Spa",
+    items:[["06:45","Check out, with Kandy View Point on the way","Kandy view point Arthur's seat"],["07:30 – 09:30","<b>Peradeniya Botanical Garden</b>","Peradeniya botanical garden avenue","key"],["10:45 – 11:30","Spice garden, Matale","Matale spice garden"],["11:30 – 12:15","Muthumariamman temple, Matale","Matale Muthumariamman temple"],["12:15 – 13:00","Lunch, then about 1.5 h to Sigiriya"],["14:30 – 16:00","<b>Sigiriya water gardens and museum</b> at the base of the rock (no climb)","Sigiriya water gardens","key"],["16:15","Check in and rest"],["17:15 – 18:15","Sunset from the tank bund","Sigiriya rock sunset lake"],["19:30","Dinner. Back about 20:30"]] },
+  { ch:"sigiriya", date:"Thu 3 Dec", title:"Cave temples, Polonnaruwa, elephants", sum:"Dambulla's painted caves, the ruins and Gal Vihara Buddhas at Polonnaruwa, and an elephant jeep safari.", img:"galvihara", side:["dambulla","elephants"], stay:"Sigiriya Jungles Resort &amp; Spa",
+    items:[["07:00","Leave after breakfast"],["07:30 – 09:00","<b>Dambulla Cave Temple</b> (opens 07:00)","Dambulla cave temple interior","key"],["10:30 – 13:30","<b>Polonnaruwa</b>","Gal Vihara Polonnaruwa","key"],["13:30","Lunch"],["14:30 – 17:30","<b>Elephant jeep safari</b>, Minneriya area (<a href=\"https://www.getyourguide.com/dambulla-l104454/from-sigiriya-polonnaruwa-day-tour-with-minneriya-safari-t640184/\" target=\"_blank\" rel=\"noopener\">tour</a>)","Minneriya elephant gathering","key"],["19:00","Dinner"]] },
+  { ch:"colombo", date:"Fri 4 Dec", title:"The long last day", sum:"Ritigala's forest monastery, Athugala, Pinnawala at bath time, then Colombo by night.", img:"gallefacegreen", side:["pinnawala","lotus"], stay:"Colombo",
+    note:"A 16-hour day with an 08:00 start the next morning. The bags stay in the car all day.",
+    items:[["06:00","Check out with a breakfast box"],["07:00 – 09:00","Ritigala forest monastery (uneven paths)","Ritigala forest monastery"],["11:15 – 12:00","Athugala, Kurunegala","Athugala Kurunegala Buddha"],["13:00 – 14:45","<b>Pinnawala</b>: lunch by the river, then the herd's bath at 14:00 (<a href=\"https://www.nationalzoo.gov.lk/pinnawala/\" target=\"_blank\" rel=\"noopener\">National Zoo</a>)","Pinnawala elephants river bathing","key"],["14:45 – 16:30","Drive into Colombo"],["16:45 – 17:15","Check in, drop bags, freshen up"],["17:30 – 18:30","<b>Galle Face Green</b> at sunset","Galle Face Green sunset","key"],["18:40 – 19:40","Gangaramaya (until 20:00) and Seema Malaka","Seema Malaka Colombo"],["19:50 – 20:05","Independence Square, lit up","Independence Memorial Hall Colombo"],["20:15","Past the lit-up Lotus Tower on the way to dinner","Lotus Tower Colombo night"],["20:30 – 21:45","Dinner at the Dutch Hospital precinct","Dutch Hospital Colombo"],["22:00","Back. Weigh the bags (20 kg each)"]] },
+  { ch:"maldives", date:"Sat 5 Dec", title:"Colombo to Malé", sum:"A morning drive to the airport, a short hop across the sea, and a free evening in Hulhumalé.", img:"hulhumale", stay:"Lonuveli, Hulhumalé",
+    items:[["07:00","Breakfast and check out"],["08:00 – 09:00","Drive to Bandaranaike airport"],["12:15 – 13:10","VietJet VJ-1815, Colombo to Malé"],["13:30 – 14:00","Hotel pickup to Hulhumalé (included)"],["14:00","Check in; pay the green tax"],["Evening","Hulhumalé beach and dinner (not planned)","Hulhumale beach"]] },
+  { ch:"maldives", date:"Sun 6 Dec", title:"Speedboat to the overwater villa", sum:"Back to the airport and across the lagoon to Taj Exotica.", img:"villas", stay:"Taj Exotica, overwater villa with pool",
+    items:[["Morning","Breakfast; check out by 12:00"],["Time to be confirmed","Hotel transfer to Velana airport, then the resort's shared speedboat"],["15:00","<b>Check in</b> to the overwater villa with pool: welcome drink and honeymoon cake","Taj Exotica Maldives overwater villa","key"],["Evening","Dinner (included)"]] },
+  { ch:"maldives", date:"Mon 7 Dec", title:"Our anniversary", sum:"A slow resort day, a sunset dhoni cruise, and an anniversary dinner.", img:"dhoni", side:["sunset"], celebrate:true, stay:"Taj Exotica",
+    items:[["Day","<b>Anniversary.</b> A resort day (not planned)",null,"cel"],["Sunset","<b>Sunset dhoni cruise</b> (time set by the resort)","Maldives dhoni sunset cruise","cel"],["Evening","Anniversary dinner (included)",null,"cel"]] },
+  { ch:"maldives", date:"Tue 8 Dec", title:"Reef day", sum:"Snorkelling from the villa with the resort's gear, and a lazy day in the lagoon.", img:"reef", stay:"Taj Exotica",
+    items:[["Day","<b>Snorkelling</b> with complimentary gear, and a resort day","Maldives house reef snorkelling","key"],["Evening","Dinner (included)"]] },
+  { ch:"maldives", date:"Wed 9 Dec", title:"Kratisha's birthday", sum:"Breakfast in the villa, the speedboat back, and a birthday dinner in Hulhumalé.", img:"beach", celebrate:true, stay:"Lonuveli, Hulhumalé",
+    items:[["Morning","<b>Birthday breakfast</b>; check out by 12:00",null,"cel"],["Time to be confirmed","Shared speedboat to Velana airport, then the hotel pickup to Hulhumalé"],["From 13:00","Check in; pay the green tax"],["Evening","<b>Birthday dinner</b> in Hulhumalé (not planned)",null,"cel"]] },
+  { ch:"maldives", date:"Thu 10 Dec", title:"Home to Bengaluru", sum:"A last breakfast and the afternoon flight home.", img:"hulhumale", stay:"Home",
+    items:[["Morning","Breakfast; check out by 12:00"],["About 13:30","Hotel airport transfer (included); be at the airport about 2.5 h before"],["16:05 – 18:30","IndiGo 6E-1128, Malé to Bengaluru"]] },
+];
+
+const STAYS = [
+  ["21 Nov","A friend's place, Kochi"],
+  ["23 – 28 Nov · 5","Weligama Bay Marriott"],
+  ["28 – 29 Nov · 1","Laya Safari Hotel, Yala"],
+  ["29 Nov – 1 Dec · 2","Vantage Hills, Ella"],
+  ["1 – 2 Dec · 1","Radisson Hotel Kandy"],
+  ["2 – 4 Dec · 2","Sigiriya Jungles Resort &amp; Spa"],
+  ["4 – 5 Dec · 1","Colombo (to be confirmed)"],
+  ["5 – 6 Dec · 1","Lonuveli, Hulhumalé"],
+  ["6 – 9 Dec · 3","Taj Exotica, overwater villa with pool"],
+  ["9 – 10 Dec · 1","Lonuveli, Hulhumalé"],
+];
+
+const TODO = [
+  "Colombo hotel for 4 Dec, and the 08:00 airport drive on 5 Dec",
+  "Scuba dive, 25 Nov",
+  "Whale-watching boat, 26 Nov",
+  "Surf lesson, 27 Nov",
+  "Bundala and Yala safari jeeps, 28–29 Nov",
+  "Zipline, 30 Nov",
+  "Elephant jeep safari, 3 Dec",
+  "Send the resort transfer form for 6 and 9 Dec",
+  "ETA for both of us",
+];
+
+const ROUTE = [["Kochi","1"],["Weligama","5"],["Yala","1"],["Ella","2"],["Kandy","1"],["Sigiriya","2"],["Colombo","1"],["Hulhumalé","1"],["Taj Exotica","3"],["Hulhumalé","1"]];
+
+/* ---------- render ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const FP = (f, w) => "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(f) + "?width=" + w;
+for (const [k, m] of Object.entries(IMAGES)) {
+  m.key = k; m.page = "https://commons.wikimedia.org/wiki/File:" + encodeURIComponent(m.file);
+  m.src = FP(m.file, 960); m.srcLarge = FP(m.file, 1920); m.thumb = FP(m.file, 330);
+}
+// Author and licence come live from the Commons API when the page loads; until then each photo links to its Commons page.
+const credit = k => { const m = IMAGES[k]; if(!m) return "";
+  return `<span data-cr="${k}">Photo: <a href="${m.page}" target="_blank" rel="noopener">Wikimedia Commons</a></span>`; };
+const fig = (k, cls="") => { const m = IMAGES[k]; if(!m) return "";
+  return `<figure class="${cls}"><img loading="lazy" src="${m.src}" alt="${esc(m.alt)}" onerror="this.closest('figure').classList.add('noimg')"><figcaption class="cr">${credit(k)}</figcaption></figure>`; };
+document.getElementById("nav").innerHTML =
+  `<a class="l" href="../">← All trips</a><a class="brand" href="#journey">Sri Lanka → Maldives</a>` +
+  CHAPTERS.map(c => `<a class="l" href="#${c.id}">${c.nav}</a>`).join("") +
+  `<a class="l" href="#practical">Practical</a>`;
+
+const hero = IMAGES.ninearch;
+if (hero){ const h = document.getElementById("heroImg"); h.src = hero.srcLarge; h.alt = hero.alt; document.getElementById("heroCredit").innerHTML = credit("ninearch"); }
+
+document.getElementById("route").innerHTML = ROUTE.map(([p,n],i) => `<span>${i?'<i>→</i>':''}${p} <b>${n}</b></span>`).join("");
+
+const moments = DAYS.reduce((a,d) => a + d.items.length, 0);
+const nights = ROUTE.reduce((a,[,n]) => a + Number(n), 0);
+const places = new Set(DAYS.flatMap(d => d.items.filter(i => i[2]).map(i => i[2]))).size;
+document.getElementById("stats").innerHTML = [
+  [DAYS.length,"days"],[nights,"nights, plus one on a plane"],[places,"sights and stops"],[moments,"moments on the plan"]
+].map(([n,l]) => `<div><strong>${n}</strong><span>${l}</span></div>`).join("");
+
+let dayNo = 0;
+document.getElementById("chapters").innerHTML = CHAPTERS.map(c => {
+  const days = DAYS.filter(d => d.ch === c.id).map(d => {
+    dayNo++;
+    const [dow, dd, mon] = d.date.split(" ");
+    const tl = d.items.map(([t,x,q,k]) => `<li class="${k||''}"><span class="t">${t}</span><span class="x">${x}${q?` <a href="${P(q)}" target="_blank" rel="noopener">photos ↗</a>`:''}</span></li>`).join("");
+    const side = [d.img, ...(d.side||[])].map(k => fig(k)).join("");
+    const thumb = IMAGES[d.img] ? `<div class="dthumb"><img loading="lazy" src="${IMAGES[d.img].thumb}" alt="" onerror="this.style.visibility='hidden'"></div>` : `<div class="dthumb"></div>`;
+    return `<details class="day${d.celebrate?' celebrate':''}" id="day-${dayNo}">
+      <summary>
+        <div class="dnum">${String(dayNo).padStart(2,"0")}<small>${dow} ${dd} ${mon}</small></div>
+        <div class="dsum">${d.celebrate?'<span class="pill warm tag">Celebration</span>':''}<h3>${d.title}</h3><p>${d.sum}</p></div>
+        ${thumb}
+      </summary>
+      <div class="dbody">
+        <div><ol class="tl">${tl}</ol></div>
+        <div class="side">
+          <div class="stayline">Tonight: <b>${d.stay}</b></div>
+          ${d.note?`<div class="note warm">${d.note}</div>`:''}
+          ${side}
+        </div>
+      </div>
+    </details>`;
+  }).join("");
+  return `<section class="chapter" id="${c.id}"><div class="wrap">
+    <div class="ch-head">
+      ${fig(c.img) || '<figure></figure>'}
+      <div class="ch-text">
+        <div class="eyebrow">${c.label}</div>
+        <h2>${c.title}</h2>
+        <div class="meta"><span class="pill">${c.dates}</span><span class="pill">${c.nights}</span></div>
+        <p>${c.blurb}</p>
+        <div class="stay">Staying at <b>${c.stay}</b></div>
+      </div>
+    </div>
+    <div class="days">${days}</div>
+  </div></section>`;
+}).join("");
+
+document.getElementById("stays").innerHTML = STAYS.map(([n,w]) => `<tr><td class="m">${n}</td><td>${w}</td></tr>`).join("");
+
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem("slmv-todo") || "{}"); } catch(e) {}
+document.getElementById("todo").innerHTML = TODO.map((t,i) => `<li><label><input type="checkbox" id="todo-${i}" ${saved[i]?'checked':''}><span>${t}</span></label></li>`).join("");
+document.getElementById("todo").addEventListener("change", e => {
+  const i = e.target.id.replace("todo-",""); saved[i] = e.target.checked;
+  try { localStorage.setItem("slmv-todo", JSON.stringify(saved)); } catch(err) {}
+});
+
+const renderCredits = () => { document.getElementById("credits").innerHTML = Object.values(IMAGES).map(m =>
+  `<li>${esc(m.alt)}: <a href="${m.page}" target="_blank" rel="noopener">${esc(m.file.replace(/_/g," "))}</a>${m.author?` by ${esc(m.author)}, ${esc(m.license)}`:""}</li>`).join(""); };
+renderCredits();
+(async () => {
+  try {
+    const titles = Object.values(IMAGES).map(m => "File:" + m.file).join("|");
+    const u = "https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&prop=imageinfo&iiprop=extmetadata&iiextmetadatafilter=Artist|LicenseShortName&titles=" + encodeURIComponent(titles);
+    const r = await fetch(u); const j = await r.json();
+    const norm = {}; (j.query.normalized||[]).forEach(n => norm[n.to] = n.from);
+    const byFile = {}; Object.values(IMAGES).forEach(m => byFile["File:" + m.file] = m);
+    Object.values(j.query.pages).forEach(p => {
+      const m = byFile[norm[p.title] || p.title] || byFile["File:" + p.title.slice(5).replace(/ /g,"_")];
+      const md = p.imageinfo && p.imageinfo[0].extmetadata; if (!m || !md) return;
+      const d = document.createElement("div"); d.innerHTML = (md.Artist && md.Artist.value) || "";
+      m.author = (d.textContent || "Unknown").trim().replace(/\s+/g," "); m.license = (md.LicenseShortName && md.LicenseShortName.value) || "";
+      document.querySelectorAll(`[data-cr="${m.key}"]`).forEach(el => el.innerHTML = `Photo: <a href="${m.page}" target="_blank" rel="noopener">${esc(m.author)}</a>, ${esc(m.license)}`);
+    });
+    renderCredits();
+  } catch (e) { /* offline or blocked: captions keep their Commons links */ }
+})();
+
+// open the first day so the page shows a full timeline at rest
+const first = document.querySelector("details.day"); if (first) first.open = true;
+</script>
+
+</body>
+</html>
