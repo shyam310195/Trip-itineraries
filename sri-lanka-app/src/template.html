@@ -1,0 +1,214 @@
+<title>Sri Lanka Trip</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#F3F2EF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Leaflet 1.9.4 stylesheet (BSD-2-Clause), inlined */
+/*LEAFLET_CSS*/
+</style>
+<style>
+/* Layout: a phone-first trip planner in the style of TREK's mobile shell (AGPL-3.0, github.com/mauriceboe/TREK):
+   frosted glass cards on a warm off-white radial ground, a near-black active pill, a day pager of chips,
+   a timeline of stops, and a glass dock at the bottom. One light look in every mode, by choice. */
+:root{
+  color-scheme:light;
+  --ink:#101013; --muted:#68686F; --faint:#9A9AA1;
+  --bg:#F3F2EF;
+  --scr:radial-gradient(120% 80% at 50% -10%, #FBFAF7 0%, #F1EFEA 55%, #E9E7E1 100%);
+  --glass:rgba(255,255,255,.6); --gbr:rgba(255,255,255,.75);
+  --dock:rgba(255,255,255,.8);
+  --card:rgba(255,255,255,.55); --cbr:rgba(255,255,255,.75);
+  --inner:rgba(255,255,255,.68); --inbr:rgba(255,255,255,.9);
+  --act:#101013; --actfg:#fff;
+  --ic:rgba(16,16,19,.05); --rowbr:rgba(16,16,19,.06);
+  --ok:#2FA37A; --pend:#E8A13A; --info:#4A7DDB; --bad:#D6273B; --neutral:#9A9AA1;
+  --ok-soft:rgba(47,163,122,.12); --pend-soft:rgba(232,161,58,.16); --info-soft:rgba(74,125,219,.12);
+  --shadow:0 1px 1px rgba(16,16,19,.03), 0 12px 32px -18px rgba(16,16,19,.28);
+  --f:'Poppins', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  --dock-h:calc(76px + env(safe-area-inset-bottom, 0px));
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);background-image:var(--scr);background-attachment:fixed;color:var(--ink);font:14px/1.5 var(--f);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--info);outline-offset:2px;border-radius:12px}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+.ico{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gut{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.col{max-width:640px;margin:0 auto}
+
+/* top glass bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:30;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;padding-block:10px 8px}
+.bar{display:flex;align-items:center;gap:10px;background:var(--glass);border:1px solid var(--gbr);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border-radius:22px;padding:8px 8px 8px 14px;box-shadow:var(--shadow)}
+.bar .t{min-width:0;flex:1}
+.bar .t b{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .t span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:8px 12px;border-radius:999px;background:var(--act);color:var(--actfg);white-space:nowrap;text-decoration:none}
+.pill.soft{background:var(--inner);color:var(--ink);border:1px solid var(--inbr)}
+
+/* day pager */
+.pager{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:10px 4px;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);padding-inline:14px;margin-inline:-14px}
+.pager::-webkit-scrollbar{display:none}
+.chip{flex:none;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:54px;padding:8px 10px;border-radius:16px;background:var(--card);border:1px solid var(--cbr);font-variant-numeric:tabular-nums;position:relative}
+.chip small{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.chip b{font-size:17px;font-weight:600;line-height:1.15}
+.chip i{font-style:normal;font-size:10px;color:var(--faint);max-width:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip.on{background:var(--act);border-color:var(--act);color:var(--actfg)}
+.chip.on small,.chip.on i{color:rgba(255,255,255,.7)}
+.chip.past{opacity:.62}
+.chip.today::after{content:"";position:absolute;top:6px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--ok)}
+
+main{padding-bottom:calc(var(--dock-h) + 24px)}
+.view[hidden]{display:none!important}
+
+/* day hero */
+.hero{position:relative;border-radius:26px;overflow:hidden;margin-top:12px;aspect-ratio:16/10;max-width:100%;background:#d9d6cf;box-shadow:var(--shadow)}
+.hero img{width:100%;height:100%;object-fit:cover}
+.hero .ov{position:absolute;inset:auto 0 0 0;padding:44px 16px 14px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.62) 100%);color:#fff}
+.hero .ov small{font-size:12px;opacity:.85;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.hero .ov h2{font-size:22px;line-height:1.2;margin-top:2px}
+.hero .badge{position:absolute;top:12px;left:12px;font-size:11.5px;font-weight:600;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.85);color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hero .badge.now{background:var(--ok);color:#fff}
+
+.card{background:var(--card);border:1px solid var(--cbr);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:22px;box-shadow:var(--shadow)}
+.stack{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.meta{padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.mrow{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.mrow .ib{width:32px;height:32px;border-radius:11px;background:var(--ic);display:grid;place-items:center;flex:none}
+.mrow .ib .ico{width:16px;height:16px}
+.mrow div{min-width:0}
+.mrow b{display:block;font-weight:500;font-size:13.5px}
+.mrow span{display:block;font-size:12.5px;color:var(--muted)}
+.mrow.warn .ib{background:var(--pend-soft);color:#9a5d00}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* timeline */
+.tl{padding:6px 0}
+.row{display:grid;grid-template-columns:62px 22px minmax(0,1fr) auto;align-items:start;gap:0 8px;padding:10px 14px 10px 12px;position:relative}
+.row + .row{border-top:1px solid var(--rowbr)}
+.tm{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;line-height:1.35;padding-top:1px}
+.tm small{display:block;font-weight:400;color:var(--faint);font-size:11.5px}
+.dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--act);color:var(--actfg);margin-top:-1px}
+.dot.plain{background:transparent;border:1.5px solid var(--faint)}
+.dot.mv{background:var(--ic);color:var(--muted)}
+.dot.mv .ico{width:12px;height:12px}
+.body{min-width:0}
+.body b{display:block;font-weight:500;font-size:14px;line-height:1.35}
+.body p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:500;padding:3px 8px;border-radius:999px;background:var(--inner);border:1px solid var(--inbr);text-decoration:none;color:var(--ink)}
+.tag .ico{width:12px;height:12px}
+.tag.add{background:var(--info-soft);border-color:transparent;color:#2c57a8}
+.tag.book{background:var(--ok-soft);border-color:transparent;color:#1d7656}
+.tag.warn{background:var(--pend-soft);border-color:transparent;color:#8a5300}
+.chk{width:26px;height:26px;border-radius:9px;border:1.5px solid rgba(16,16,19,.35);display:grid;place-items:center;margin-top:-2px}
+.chk .ico{width:14px;height:14px;opacity:0}
+.row.done .chk{background:var(--act);border-color:var(--act);color:var(--actfg)}
+.row.done .chk .ico{opacity:1}
+.row.done .body b{color:var(--muted)}
+.row.drop .body b{text-decoration:line-through;color:var(--faint)}
+.row.drop .tm{color:var(--faint);text-decoration:line-through}
+.row.now{background:linear-gradient(90deg,rgba(47,163,122,.12),rgba(47,163,122,0) 70%)}
+.row.now .tm{color:var(--ok)}
+.nowlbl{font-size:10.5px;font-weight:600;color:var(--ok);text-transform:uppercase;letter-spacing:.06em}
+.sec{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:18px 4px 0}
+
+/* map */
+#map{height:calc(100vh - 220px);min-height:360px;border-radius:24px;overflow:hidden;margin-top:12px;background:#E8E6E1;border:1px solid var(--cbr);box-shadow:var(--shadow)}
+.mk{width:26px;height:26px;border-radius:50%;background:var(--act);color:var(--actfg);display:grid;place-items:center;font:600 11.5px/1 var(--f);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.mk.hot{background:#fff;color:var(--ink);border-color:var(--act)}
+.leaflet-container{font-family:var(--f)}
+.leaflet-popup-content{margin:10px 12px;font-size:13px}
+.leaflet-popup-content a{color:#2c57a8}
+.mapnote{font-size:12px;color:var(--muted);margin:8px 4px 0}
+.seg{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--card);border:1px solid var(--cbr);margin-top:12px;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:none;font-size:12.5px;font-weight:500;padding:7px 12px;border-radius:999px;white-space:nowrap}
+.seg button.on{background:var(--act);color:var(--actfg)}
+
+/* bookings + todo */
+.bk{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:14px}
+.bk .ib{width:40px;height:40px;border-radius:14px;background:var(--ic);display:grid;place-items:center}
+.bk b{display:block;font-weight:500;font-size:14px}
+.bk .w{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bk p{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;margin-top:6px}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.ok{color:var(--ok)} .st.check{color:#b26b00}
+.todo{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;align-items:start;padding:12px 14px;width:100%;text-align:left}
+.todo + .todo{border-top:1px solid var(--rowbr)}
+.todo span{font-size:14px}
+.todo small{display:block;color:var(--muted);font-size:12px}
+.todo.done .chk{background:var(--act);border-color:var(--act);color:var(--actfg)}
+.todo.done .chk .ico{opacity:1}
+.todo.done span{color:var(--faint);text-decoration:line-through}
+.next{display:flex;gap:12px;align-items:center;padding:12px;text-decoration:none}
+.next img{width:64px;height:64px;border-radius:16px;object-fit:cover;flex:none}
+.next div{min-width:0}
+.next b{display:block;font-weight:500}
+.next span{font-size:12.5px;color:var(--muted)}
+.foot{font-size:11.5px;color:var(--faint);margin:20px 4px 0;line-height:1.6}
+.foot a{color:var(--muted)}
+
+/* dock */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:25;padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px));pointer-events:none}
+.dock nav{pointer-events:auto;max-width:420px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px;border-radius:26px;background:var(--dock);border:1px solid var(--gbr);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);box-shadow:0 10px 30px -12px rgba(16,16,19,.35)}
+.dock button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 7px;border-radius:20px;font-size:11px;font-weight:500;color:var(--muted)}
+.dock button.on{background:var(--act);color:var(--actfg)}
+@media (prefers-reduced-motion: no-preference){
+  .chip,.dock button,.seg button{transition:background .18s,color .18s}
+}
+@media (min-width:720px){
+  .hero{aspect-ratio:21/9}
+}
+</style>
+
+<div id="app">
+  <header class="top gut">
+    <div class="col">
+      <div class="bar">
+        <div class="t"><b>Sri Lanka · 23 Nov – 5 Dec</b><span id="sub">Kratisha and Shyam</span></div>
+        <a class="pill soft" id="todayBtn" href="#plan">Today</a>
+      </div>
+      <div class="pager" id="pager" role="tablist" aria-label="Days"></div>
+    </div>
+  </header>
+
+  <main class="gut">
+    <div class="col">
+      <section class="view" id="v-plan" aria-label="Day plan"></section>
+      <section class="view" id="v-map" aria-label="Map" hidden>
+        <div class="seg" id="mapSeg"></div>
+        <div id="map"></div>
+        <p class="mapnote" id="mapNote">Pins are placed by hand and approximate. Lines join stops in visit order; they are not road routes. Use “Open in Google Maps” for real driving times.</p>
+      </section>
+      <section class="view" id="v-book" aria-label="Bookings" hidden></section>
+      <section class="view" id="v-todo" aria-label="To-do" hidden></section>
+      <p class="foot">Plan from the trip notes, version 5 with the 24–25 Nov route fixes. Bundala bird safari dropped 28 Nov. No booking numbers are shown on this page. Photos from Wikimedia Commons (credits on the <a href="https://shyam310195.github.io/Trip-itineraries/sri-lanka-maldives/" target="_blank" rel="noopener">trip site</a>). Map © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors, © CARTO. Design derived from <a href="https://github.com/mauriceboe/TREK" target="_blank" rel="noopener">TREK</a> (AGPL-3.0); this page is not affiliated with TREK. <a href="https://github.com/shyam310195/Trip-itineraries/tree/main/sri-lanka-app" target="_blank" rel="noopener">Source</a>.</p>
+    </div>
+  </main>
+
+  <div class="dock gut">
+    <nav aria-label="Sections">
+      <button data-v="plan" class="on"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Plan</button>
+      <button data-v="map"><svg class="ico" viewBox="0 0 24 24"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15M9 3.236v15"/></svg>Map</button>
+      <button data-v="book"><svg class="ico" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>Bookings</button>
+      <button data-v="todo"><svg class="ico" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/></svg>To-do</button>
+    </nav>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+window.IMG_BASE = "/*IMG_BASE*/";
+/*DATA_JS*/
+</script>
+<script>
+/*APP_JS*/
+</script>

@@ -1,0 +1,1416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sri Lanka Trip</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#F3F2EF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Leaflet 1.9.4 stylesheet (BSD-2-Clause), inlined */
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: url(images/layers.png);
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(images/layers-2x.png);
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: url(images/marker-icon.png);
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+
+</style>
+<style>
+/* Layout: a phone-first trip planner in the style of TREK's mobile shell (AGPL-3.0, github.com/mauriceboe/TREK):
+   frosted glass cards on a warm off-white radial ground, a near-black active pill, a day pager of chips,
+   a timeline of stops, and a glass dock at the bottom. One light look in every mode, by choice. */
+:root{
+  color-scheme:light;
+  --ink:#101013; --muted:#68686F; --faint:#9A9AA1;
+  --bg:#F3F2EF;
+  --scr:radial-gradient(120% 80% at 50% -10%, #FBFAF7 0%, #F1EFEA 55%, #E9E7E1 100%);
+  --glass:rgba(255,255,255,.6); --gbr:rgba(255,255,255,.75);
+  --dock:rgba(255,255,255,.8);
+  --card:rgba(255,255,255,.55); --cbr:rgba(255,255,255,.75);
+  --inner:rgba(255,255,255,.68); --inbr:rgba(255,255,255,.9);
+  --act:#101013; --actfg:#fff;
+  --ic:rgba(16,16,19,.05); --rowbr:rgba(16,16,19,.06);
+  --ok:#2FA37A; --pend:#E8A13A; --info:#4A7DDB; --bad:#D6273B; --neutral:#9A9AA1;
+  --ok-soft:rgba(47,163,122,.12); --pend-soft:rgba(232,161,58,.16); --info-soft:rgba(74,125,219,.12);
+  --shadow:0 1px 1px rgba(16,16,19,.03), 0 12px 32px -18px rgba(16,16,19,.28);
+  --f:'Poppins', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  --dock-h:calc(76px + env(safe-area-inset-bottom, 0px));
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);background-image:var(--scr);background-attachment:fixed;color:var(--ink);font:14px/1.5 var(--f);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--info);outline-offset:2px;border-radius:12px}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+.ico{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gut{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.col{max-width:640px;margin:0 auto}
+
+/* top glass bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:30;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;padding-block:10px 8px}
+.bar{display:flex;align-items:center;gap:10px;background:var(--glass);border:1px solid var(--gbr);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border-radius:22px;padding:8px 8px 8px 14px;box-shadow:var(--shadow)}
+.bar .t{min-width:0;flex:1}
+.bar .t b{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .t span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:8px 12px;border-radius:999px;background:var(--act);color:var(--actfg);white-space:nowrap;text-decoration:none}
+.pill.soft{background:var(--inner);color:var(--ink);border:1px solid var(--inbr)}
+
+/* day pager */
+.pager{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:10px 4px;scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);padding-inline:14px;margin-inline:-14px}
+.pager::-webkit-scrollbar{display:none}
+.chip{flex:none;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:54px;padding:8px 10px;border-radius:16px;background:var(--card);border:1px solid var(--cbr);font-variant-numeric:tabular-nums;position:relative}
+.chip small{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.chip b{font-size:17px;font-weight:600;line-height:1.15}
+.chip i{font-style:normal;font-size:10px;color:var(--faint);max-width:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip.on{background:var(--act);border-color:var(--act);color:var(--actfg)}
+.chip.on small,.chip.on i{color:rgba(255,255,255,.7)}
+.chip.past{opacity:.62}
+.chip.today::after{content:"";position:absolute;top:6px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--ok)}
+
+main{padding-bottom:calc(var(--dock-h) + 24px)}
+.view[hidden]{display:none!important}
+
+/* day hero */
+.hero{position:relative;border-radius:26px;overflow:hidden;margin-top:12px;aspect-ratio:16/10;max-width:100%;background:#d9d6cf;box-shadow:var(--shadow)}
+.hero img{width:100%;height:100%;object-fit:cover}
+.hero .ov{position:absolute;inset:auto 0 0 0;padding:44px 16px 14px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.62) 100%);color:#fff}
+.hero .ov small{font-size:12px;opacity:.85;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.hero .ov h2{font-size:22px;line-height:1.2;margin-top:2px}
+.hero .badge{position:absolute;top:12px;left:12px;font-size:11.5px;font-weight:600;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.85);color:var(--ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hero .badge.now{background:var(--ok);color:#fff}
+
+.card{background:var(--card);border:1px solid var(--cbr);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:22px;box-shadow:var(--shadow)}
+.stack{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.meta{padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.mrow{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.mrow .ib{width:32px;height:32px;border-radius:11px;background:var(--ic);display:grid;place-items:center;flex:none}
+.mrow .ib .ico{width:16px;height:16px}
+.mrow div{min-width:0}
+.mrow b{display:block;font-weight:500;font-size:13.5px}
+.mrow span{display:block;font-size:12.5px;color:var(--muted)}
+.mrow.warn .ib{background:var(--pend-soft);color:#9a5d00}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* timeline */
+.tl{padding:6px 0}
+.row{display:grid;grid-template-columns:62px 22px minmax(0,1fr) auto;align-items:start;gap:0 8px;padding:10px 14px 10px 12px;position:relative}
+.row + .row{border-top:1px solid var(--rowbr)}
+.tm{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;line-height:1.35;padding-top:1px}
+.tm small{display:block;font-weight:400;color:var(--faint);font-size:11.5px}
+.dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--act);color:var(--actfg);margin-top:-1px}
+.dot.plain{background:transparent;border:1.5px solid var(--faint)}
+.dot.mv{background:var(--ic);color:var(--muted)}
+.dot.mv .ico{width:12px;height:12px}
+.body{min-width:0}
+.body b{display:block;font-weight:500;font-size:14px;line-height:1.35}
+.body p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:500;padding:3px 8px;border-radius:999px;background:var(--inner);border:1px solid var(--inbr);text-decoration:none;color:var(--ink)}
+.tag .ico{width:12px;height:12px}
+.tag.add{background:var(--info-soft);border-color:transparent;color:#2c57a8}
+.tag.book{background:var(--ok-soft);border-color:transparent;color:#1d7656}
+.tag.warn{background:var(--pend-soft);border-color:transparent;color:#8a5300}
+.chk{width:26px;height:26px;border-radius:9px;border:1.5px solid rgba(16,16,19,.35);display:grid;place-items:center;margin-top:-2px}
+.chk .ico{width:14px;height:14px;opacity:0}
+.row.done .chk{background:var(--act);border-color:var(--act);color:var(--actfg)}
+.row.done .chk .ico{opacity:1}
+.row.done .body b{color:var(--muted)}
+.row.drop .body b{text-decoration:line-through;color:var(--faint)}
+.row.drop .tm{color:var(--faint);text-decoration:line-through}
+.row.now{background:linear-gradient(90deg,rgba(47,163,122,.12),rgba(47,163,122,0) 70%)}
+.row.now .tm{color:var(--ok)}
+.nowlbl{font-size:10.5px;font-weight:600;color:var(--ok);text-transform:uppercase;letter-spacing:.06em}
+.sec{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:18px 4px 0}
+
+/* map */
+#map{height:calc(100vh - 220px);min-height:360px;border-radius:24px;overflow:hidden;margin-top:12px;background:#E8E6E1;border:1px solid var(--cbr);box-shadow:var(--shadow)}
+.mk{width:26px;height:26px;border-radius:50%;background:var(--act);color:var(--actfg);display:grid;place-items:center;font:600 11.5px/1 var(--f);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.mk.hot{background:#fff;color:var(--ink);border-color:var(--act)}
+.leaflet-container{font-family:var(--f)}
+.leaflet-popup-content{margin:10px 12px;font-size:13px}
+.leaflet-popup-content a{color:#2c57a8}
+.mapnote{font-size:12px;color:var(--muted);margin:8px 4px 0}
+.seg{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--card);border:1px solid var(--cbr);margin-top:12px;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:none;font-size:12.5px;font-weight:500;padding:7px 12px;border-radius:999px;white-space:nowrap}
+.seg button.on{background:var(--act);color:var(--actfg)}
+
+/* bookings + todo */
+.bk{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:14px}
+.bk .ib{width:40px;height:40px;border-radius:14px;background:var(--ic);display:grid;place-items:center}
+.bk b{display:block;font-weight:500;font-size:14px}
+.bk .w{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bk p{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;margin-top:6px}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.ok{color:var(--ok)} .st.check{color:#b26b00}
+.todo{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;align-items:start;padding:12px 14px;width:100%;text-align:left}
+.todo + .todo{border-top:1px solid var(--rowbr)}
+.todo span{font-size:14px}
+.todo small{display:block;color:var(--muted);font-size:12px}
+.todo.done .chk{background:var(--act);border-color:var(--act);color:var(--actfg)}
+.todo.done .chk .ico{opacity:1}
+.todo.done span{color:var(--faint);text-decoration:line-through}
+.next{display:flex;gap:12px;align-items:center;padding:12px;text-decoration:none}
+.next img{width:64px;height:64px;border-radius:16px;object-fit:cover;flex:none}
+.next div{min-width:0}
+.next b{display:block;font-weight:500}
+.next span{font-size:12.5px;color:var(--muted)}
+.foot{font-size:11.5px;color:var(--faint);margin:20px 4px 0;line-height:1.6}
+.foot a{color:var(--muted)}
+
+/* dock */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:25;padding-bottom:calc(10px + env(safe-area-inset-bottom, 0px));pointer-events:none}
+.dock nav{pointer-events:auto;max-width:420px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:6px;border-radius:26px;background:var(--dock);border:1px solid var(--gbr);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);box-shadow:0 10px 30px -12px rgba(16,16,19,.35)}
+.dock button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 7px;border-radius:20px;font-size:11px;font-weight:500;color:var(--muted)}
+.dock button.on{background:var(--act);color:var(--actfg)}
+@media (prefers-reduced-motion: no-preference){
+  .chip,.dock button,.seg button{transition:background .18s,color .18s}
+}
+@media (min-width:720px){
+  .hero{aspect-ratio:21/9}
+}
+</style>
+
+</head>
+<body>
+<div id="app">
+  <header class="top gut">
+    <div class="col">
+      <div class="bar">
+        <div class="t"><b>Sri Lanka · 23 Nov – 5 Dec</b><span id="sub">Kratisha and Shyam</span></div>
+        <a class="pill soft" id="todayBtn" href="#plan">Today</a>
+      </div>
+      <div class="pager" id="pager" role="tablist" aria-label="Days"></div>
+    </div>
+  </header>
+
+  <main class="gut">
+    <div class="col">
+      <section class="view" id="v-plan" aria-label="Day plan"></section>
+      <section class="view" id="v-map" aria-label="Map" hidden>
+        <div class="seg" id="mapSeg"></div>
+        <div id="map"></div>
+        <p class="mapnote" id="mapNote">Pins are placed by hand and approximate. Lines join stops in visit order; they are not road routes. Use “Open in Google Maps” for real driving times.</p>
+      </section>
+      <section class="view" id="v-book" aria-label="Bookings" hidden></section>
+      <section class="view" id="v-todo" aria-label="To-do" hidden></section>
+      <p class="foot">Plan from the trip notes, version 5 with the 24–25 Nov route fixes. Bundala bird safari dropped 28 Nov. No booking numbers are shown on this page. Photos from Wikimedia Commons (credits on the <a href="https://shyam310195.github.io/Trip-itineraries/sri-lanka-maldives/" target="_blank" rel="noopener">trip site</a>). Map © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors, © CARTO. Design derived from <a href="https://github.com/mauriceboe/TREK" target="_blank" rel="noopener">TREK</a> (AGPL-3.0); this page is not affiliated with TREK. <a href="https://github.com/shyam310195/Trip-itineraries/tree/main/sri-lanka-app" target="_blank" rel="noopener">Source</a>.</p>
+    </div>
+  </main>
+
+  <div class="dock gut">
+    <nav aria-label="Sections">
+      <button data-v="plan" class="on"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Plan</button>
+      <button data-v="map"><svg class="ico" viewBox="0 0 24 24"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15M9 3.236v15"/></svg>Map</button>
+      <button data-v="book"><svg class="ico" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>Bookings</button>
+      <button data-v="todo"><svg class="ico" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/></svg>To-do</button>
+    </nav>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+window.IMG_BASE = "../sri-lanka-maldives/img/";
+/* Trip data for the Sri Lanka trip app.
+   Source: itinerary-and-bookings.md (plan v5, with the 24 and 25 Nov route fixes) and the
+   project's booking notes. Bundala bird safari dropped on 28 Nov at the travellers' request.
+   Map pins are approximate (placed by hand, not geocoded); the "Open in Google Maps" buttons
+   search each place by name so the phone's own routing is used. No booking numbers, card
+   details or passport data on purpose: this page is public. */
+
+const P = {
+  cmb:        { n: "Bandaranaike Airport (CMB)", lat: 7.1808, lng: 79.8841, q: "Bandaranaike International Airport" },
+  marriott:   { n: "Weligama Bay Marriott", lat: 5.9686, lng: 80.4350, q: "Weligama Bay Marriott Resort & Spa" },
+  taprobane:  { n: "Taprobane Island view", lat: 5.9681, lng: 80.4231, q: "Taprobane Island Weligama" },
+  coconut:    { n: "Coconut Tree Hill", lat: 5.9389, lng: 80.4650, q: "Coconut Tree Hill Mirissa" },
+  mirissa:    { n: "Mirissa beach", lat: 5.9447, lng: 80.4589, q: "Mirissa Beach" },
+  harbour:    { n: "Mirissa harbour", lat: 5.9450, lng: 80.4530, q: "Mirissa Fisheries Harbour" },
+  turtle:     { n: "Turtle hatchery, Koggala area", lat: 5.9950, lng: 80.3150, q: "Turtle hatchery Habaraduwa" },
+  stilt:      { n: "Stilt fishermen, Koggala", lat: 5.9870, lng: 80.3260, q: "Stilt fishermen Koggala" },
+  koggala:    { n: "Koggala Lake", lat: 5.9950, lng: 80.3400, q: "Koggala Lake boat ride" },
+  ahangama:   { n: "Ahangama", lat: 5.9733, lng: 80.3625, q: "Ahangama beach" },
+  matara:     { n: "Paravi Duwa temple, Matara", lat: 5.9418, lng: 80.5480, q: "Paravi Duwa Temple Matara" },
+  dondra:     { n: "Dondra Head lighthouse", lat: 5.9216, lng: 80.5895, q: "Dondra Head Lighthouse" },
+  dikwella:   { n: "Dikwella", lat: 5.9650, lng: 80.6950, q: "Dikwella" },
+  hummanaya:  { n: "Hummanaya blowhole", lat: 6.0010, lng: 80.7450, q: "Hummanaya Blow Hole" },
+  hiriketiya: { n: "Hiriketiya bay", lat: 5.9640, lng: 80.7080, q: "Hiriketiya Beach" },
+  unawatuna:  { n: "Unawatuna (Sun Diving)", lat: 6.0100, lng: 80.2490, q: "Sun Diving Unawatuna" },
+  pagoda:     { n: "Japanese Peace Pagoda", lat: 6.0160, lng: 80.2390, q: "Japanese Peace Pagoda Unawatuna" },
+  secret:     { n: "Secret Beach and Parrot Rock", lat: 5.9420, lng: 80.4600, q: "Parrot Rock Mirissa" },
+  surf:       { n: "Weligama surf beach", lat: 5.9738, lng: 80.4290, q: "Weligama Beach surf" },
+  galle:      { n: "Galle Fort", lat: 6.0260, lng: 80.2170, q: "Galle Fort" },
+  bundala:    { n: "Bundala National Park", lat: 6.1950, lng: 81.2100, q: "Bundala National Park" },
+  tissa:      { n: "Tissa Wewa and stupa", lat: 6.2800, lng: 81.2870, q: "Tissamaharama Raja Maha Vihara" },
+  kirinda:    { n: "Kirinda temple and beach", lat: 6.2140, lng: 81.3330, q: "Kirinda Temple" },
+  laya:       { n: "Laya Safari Hotel", lat: 6.2360, lng: 81.3560, q: "Laya Safari Hotel Yala" },
+  yala:       { n: "Yala, Palatupana gate", lat: 6.2750, lng: 81.4040, q: "Yala National Park Palatupana entrance" },
+  kataragama: { n: "Kataragama temple", lat: 6.4134, lng: 81.3346, q: "Kataragama Devalaya" },
+  ravana:     { n: "Ravana Falls", lat: 6.8410, lng: 81.0520, q: "Ravana Falls" },
+  vantage:    { n: "Vantage Hills, Ella", lat: 6.8700, lng: 81.0480, q: "Vantage Hills Ella" },
+  ninearch:   { n: "Nine Arch Bridge", lat: 6.8768, lng: 81.0608, q: "Nine Arch Bridge Ella" },
+  ellagap:    { n: "Ella Gap", lat: 6.8667, lng: 81.0466, q: "Ella Gap viewpoint" },
+  ella:       { n: "Ella town", lat: 6.8756, lng: 81.0464, q: "Ella Sri Lanka" },
+  lipton:     { n: "Lipton's Seat", lat: 6.8017, lng: 80.9586, q: "Lipton's Seat" },
+  dambatenne: { n: "Dambatenne Tea Factory", lat: 6.7905, lng: 80.9737, q: "Dambatenne Tea Factory" },
+  diyaluma:   { n: "Diyaluma Falls", lat: 6.7323, lng: 81.0300, q: "Diyaluma Falls" },
+  zipline:    { n: "Flying Ravana zipline", lat: 6.8690, lng: 81.0520, q: "Flying Ravana Zipline Ella" },
+  demodara:   { n: "Demodara Loop", lat: 6.9050, lng: 81.0560, q: "Demodara Loop" },
+  ellastn:    { n: "Ella station", lat: 6.8762, lng: 81.0466, q: "Ella Railway Station" },
+  nanuoya:    { n: "Nanu Oya station", lat: 6.9460, lng: 80.7930, q: "Nanu Oya Railway Station" },
+  gregory:    { n: "Gregory Lake and Victoria Park", lat: 6.9580, lng: 80.7780, q: "Gregory Lake Nuwara Eliya" },
+  ramboda:    { n: "Ramboda Falls", lat: 7.0570, lng: 80.6960, q: "Ramboda Falls" },
+  tooth:      { n: "Temple of the Tooth", lat: 7.2936, lng: 80.6413, q: "Temple of the Sacred Tooth Relic Kandy" },
+  kandylake:  { n: "Kandy Lake", lat: 7.2920, lng: 80.6450, q: "Kandy Lake" },
+  bahirava:   { n: "Bahiravokanda Buddha", lat: 7.2965, lng: 80.6280, q: "Bahirawakanda Vihara Buddha Statue" },
+  radisson:   { n: "Radisson Hotel Kandy", lat: 7.2905, lng: 80.6472, q: "Radisson Hotel Kandy" },
+  kandyview:  { n: "Kandy View Point", lat: 7.2890, lng: 80.6390, q: "Kandy View Point Arthur's Seat" },
+  peradeniya: { n: "Peradeniya Botanical Garden", lat: 7.2690, lng: 80.5960, q: "Royal Botanic Gardens Peradeniya" },
+  matale:     { n: "Muthumariamman temple, Matale", lat: 7.4700, lng: 80.6230, q: "Sri Muthumariamman Temple Matale" },
+  watergdn:   { n: "Sigiriya water gardens", lat: 7.9560, lng: 80.7550, q: "Sigiriya Water Gardens" },
+  jungles:    { n: "Sigiriya Jungles, Kimbissa", lat: 7.9300, lng: 80.7330, q: "Sigiriya Jungles Resort" },
+  tankbund:   { n: "Sigiriya tank bund", lat: 7.9530, lng: 80.7450, q: "Sigiriya Wewa" },
+  dambulla:   { n: "Dambulla Cave Temple", lat: 7.8567, lng: 80.6490, q: "Dambulla Cave Temple" },
+  polonnaruwa:{ n: "Polonnaruwa", lat: 7.9660, lng: 81.0040, q: "Gal Vihara Polonnaruwa" },
+  minneriya:  { n: "Minneriya National Park", lat: 8.0350, lng: 80.8800, q: "Minneriya National Park" },
+  ritigala:   { n: "Ritigala forest monastery", lat: 8.1100, lng: 80.6500, q: "Ritigala Forest Monastery" },
+  athugala:   { n: "Athugala, Kurunegala", lat: 7.4870, lng: 80.3700, q: "Athugala Kurunegala Buddha" },
+  pinnawala:  { n: "Pinnawala Elephant Orphanage", lat: 7.3006, lng: 80.3880, q: "Pinnawala Elephant Orphanage" },
+  courtyard:  { n: "Courtyard Colombo", lat: 6.9080, lng: 79.8530, q: "Courtyard by Marriott Colombo" },
+  galleface:  { n: "Galle Face Green", lat: 6.9245, lng: 79.8450, q: "Galle Face Green" },
+  gangaramaya:{ n: "Gangaramaya and Seema Malaka", lat: 6.9165, lng: 79.8566, q: "Gangaramaya Temple" },
+  indepsq:    { n: "Independence Square", lat: 6.9040, lng: 79.8680, q: "Independence Memorial Hall Colombo" },
+  lotus:      { n: "Lotus Tower", lat: 6.9271, lng: 79.8580, q: "Lotus Tower Colombo" },
+  dutch:      { n: "Dutch Hospital precinct", lat: 6.9339, lng: 79.8433, q: "Dutch Hospital Shopping Precinct Colombo" }
+};
+
+const G = q => "https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(q);
+const R = (a, b) => "https://www.rome2rio.com/s/" + a + "/" + b;
+
+/* kind: "add" = an add-on, "drop" = dropped (shown struck through), "warn" = needs a check,
+   "book" = booked item, "move" = travel/transfer. */
+const DAYS = [
+  {
+    date: "2026-11-23", city: "Weligama", title: "Land, sleep, first sunset", img: "coconut",
+    hotel: "Weligama Bay Marriott", done: true,
+    route: ["cmb", "marriott", "taprobane", "coconut", "mirissa", "marriott"],
+    items: [
+      { t: "02:00", title: "Land at Colombo", note: "ETA, SIM and cash.", kind: "move", pin: "cmb" },
+      { t: "02:45", e: "05:00", title: "Drive to Weligama", note: "Early check-in requested.", kind: "move" },
+      { t: "05:00", e: "11:00", title: "Sleep", note: "Brunch at 11:30." },
+      { t: "14:00", e: "16:30", title: "Weligama beach and Taprobane Island view", pin: "taprobane", photos: G("Taprobane island Weligama") },
+      { t: "17:00", e: "18:30", title: "Coconut Tree Hill sunset", pin: "coconut", photos: G("Coconut Tree Hill Mirissa") },
+      { t: "19:00", title: "Dinner on Mirissa beach", note: "Back about 21:00.", pin: "mirissa" }
+    ]
+  },
+  {
+    date: "2026-11-24", city: "Weligama", title: "Whales, stilt fishermen, Koggala Lake", img: "whale",
+    hotel: "Weligama Bay Marriott", done: true,
+    route: ["marriott", "harbour", "turtle", "stilt", "koggala", "ahangama", "marriott"],
+    items: [
+      { t: "06:30", e: "11:30", title: "Whale watching", pin: "harbour", src: { l: "Nomadic Boys", u: "https://nomadicboys.com/whale-watching-mirissa/" }, photos: G("Mirissa blue whale watching") },
+      { t: "12:00", title: "Lunch" },
+      { t: "13:30", e: "14:30", title: "Turtle hatchery, Koggala area", kind: "add", pin: "turtle", photos: G("Koggala turtle hatchery") },
+      { t: "15:00", e: "15:30", title: "Stilt fishermen", pin: "stilt", photos: G("Koggala stilt fishermen") },
+      { t: "15:45", e: "17:30", title: "Koggala Lake boat ride", pin: "koggala", photos: G("Koggala lake boat cinnamon island") },
+      { t: "18:00", title: "Ahangama sunset, then dinner", note: "Back about 20:30.", pin: "ahangama" }
+    ]
+  },
+  {
+    date: "2026-11-25", city: "Weligama", title: "The east loop", img: "dondra",
+    hotel: "Weligama Bay Marriott", done: true,
+    drive: "About 2 h 20 of driving (estimate)",
+    driveSrc: { l: "Rome2rio", u: R("Weligama", "Matara") },
+    route: ["marriott", "matara", "dondra", "dikwella", "hummanaya", "hiriketiya", "marriott"],
+    items: [
+      { t: "08:30", title: "Leave", kind: "move" },
+      { t: "08:50", e: "10:20", title: "Matara: Paravi Duwa temple and the Star Fort", pin: "matara", photos: G("Paravi Duwa temple Matara") },
+      { t: "10:35", e: "11:20", title: "Dondra Head lighthouse", note: "Turn right at Devinuwara, about 1.2 km.", pin: "dondra", photos: G("Dondra Head lighthouse") },
+      { t: "12:00", title: "Lunch around Dikwella", pin: "dikwella" },
+      { t: "13:15", e: "14:45", title: "Hummanaya blowhole", note: "1.1 km off the road at Kudawella; about 20 min walk down steps.", kind: "add", pin: "hummanaya", src: { l: "Wikipedia", u: "https://en.wikipedia.org/wiki/Hummanaya" }, photos: G("Hummanaya blowhole") },
+      { t: "15:00", e: "18:30", title: "Hiriketiya bay: swim and sunset", pin: "hiriketiya", photos: G("Hiriketiya beach") },
+      { t: "19:00", title: "Dinner at Hiriketiya", note: "Back about 20:45." }
+    ]
+  },
+  {
+    date: "2026-11-26", city: "Weligama", title: "Dive, Peace Pagoda, Mirissa evening", img: "pagoda",
+    hotel: "Weligama Bay Marriott", done: true,
+    drive: "About 1 h 20 of driving",
+    driveSrc: { l: "Rome2rio", u: R("Weligama", "Unawatuna") },
+    route: ["marriott", "unawatuna", "pagoda", "marriott", "secret", "marriott"],
+    items: [
+      { t: "07:45", title: "Leave", kind: "move" },
+      { t: "08:15", e: "12:00", title: "Sun Diving, Rock Island at 10 m", pin: "unawatuna", src: { l: "listing", u: "https://www.travelocity.com/things-to-do/discover-scuba-diving-in-beautiful-unawatuna-bay.a2332923.activity-details" }, photos: G("Unawatuna scuba diving") },
+      { t: "12:00", title: "Lunch in Unawatuna" },
+      { t: "13:30", e: "14:30", title: "Japanese Peace Pagoda and Jungle Beach", pin: "pagoda", photos: G("Japanese Peace Pagoda Unawatuna") },
+      { t: "15:00", e: "16:30", title: "Rest at the hotel" },
+      { t: "16:45", e: "18:30", title: "Mirissa Secret Beach and Parrot Rock, sunset", pin: "secret", photos: G("Mirissa Parrot Rock") },
+      { t: "18:30", title: "Cafés and dinner in Mirissa", note: "Back about 21:00." }
+    ]
+  },
+  {
+    date: "2026-11-27", city: "Weligama", title: "Surf, then Galle Fort", img: "galle",
+    hotel: "Weligama Bay Marriott", done: true,
+    drive: "About 1 h of driving",
+    driveSrc: { l: "Rome2rio", u: R("Weligama", "Galle") },
+    route: ["surf", "marriott", "galle", "marriott"],
+    items: [
+      { t: "07:00", e: "09:00", title: "Beginner surf lesson", pin: "surf", photos: G("Weligama surf lesson") },
+      { t: "09:30", e: "14:00", title: "Breakfast, beach and pool", note: "Pack before Galle: Yala starts at 05:00 on 28 Nov." },
+      { t: "14:30", title: "Leave for Galle", kind: "move" },
+      { t: "15:00", e: "18:45", title: "Galle Fort, sunset on the ramparts", pin: "galle", photos: G("Galle Fort ramparts sunset") },
+      { t: "19:00", title: "Farewell dinner in the fort", note: "Back about 21:15." },
+      { t: "09:30", e: "15:30", title: "Madu River boat safari, Balapitiya", note: "Dropped 24 Nov to cut driving.", kind: "drop", photos: G("Madu River boat safari") }
+    ]
+  },
+  {
+    date: "2026-11-28", city: "Yala", title: "Tissa, Kirinda, first safari", img: "leopard",
+    hotel: "Laya Safari Hotel (breakfast and dinner)",
+    route: ["marriott", "tissa", "kirinda", "laya", "yala", "kataragama", "laya"],
+    items: [
+      { t: "05:00", title: "Check out (breakfast box)", kind: "move" },
+      { t: "07:30", e: "10:30", title: "Bundala bird safari", note: "Dropped 28 Nov.", kind: "drop", photos: G("Bundala national park flamingo") },
+      { t: "11:00", e: "11:45", title: "Tissa Wewa and the stupa", pin: "tissa", photos: G("Tissamaharama stupa Tissa Wewa") },
+      { t: "12:00", e: "12:45", title: "Kirinda temple and beach", note: "Short steps.", kind: "add", pin: "kirinda", photos: G("Kirinda temple rock") },
+      { t: "13:00", title: "Lunch at Laya Safari; check-in from 14:00", pin: "laya", kind: "book" },
+      { t: "14:30", e: "18:00", title: "Yala safari 1", pin: "yala", src: { l: "Pelago", u: "https://www.pelago.com/en/activity/p310ohauq-yala-national-park-private-safari-yala-national-park" }, photos: G("Yala leopard safari") },
+      { t: "18:45", e: "20:30", title: "Kataragama evening puja", pin: "kataragama", photos: G("Kataragama evening puja") },
+      { t: "21:00", title: "Dinner at the lodge" }
+    ]
+  },
+  {
+    date: "2026-11-29", city: "Ella", title: "Dawn safari, then up to Ella", img: "ninearch",
+    hotel: "Vantage Hills, Ella (breakfast; pay at hotel)",
+    route: ["laya", "yala", "laya", "ravana", "vantage", "ninearch", "ellagap", "ella"],
+    items: [
+      { t: "05:30", e: "10:00", title: "Yala safari 2", pin: "yala", photos: G("Yala leopard safari") },
+      { t: "10:00", title: "Breakfast, then check out", pin: "laya" },
+      { t: "11:00", e: "13:30", title: "Drive to Ella with the Ravana Falls stop", kind: "move", pin: "ravana", photos: G("Ravana Falls Ella") },
+      { t: "14:00", title: "Check in at Vantage Hills", pin: "vantage", kind: "book" },
+      { t: "15:00", e: "17:00", title: "Nine Arch Bridge", pin: "ninearch", photos: G("Nine Arch Bridge Ella train") },
+      { t: "17:30", title: "Sunset over Ella Gap", pin: "ellagap" },
+      { t: "19:30", title: "Dinner in town", note: "Back about 21:00.", pin: "ella" }
+    ]
+  },
+  {
+    date: "2026-11-30", city: "Ella", title: "Lipton's Seat, Diyaluma, zipline", img: "lipton",
+    hotel: "Vantage Hills, Ella",
+    route: ["vantage", "lipton", "dambatenne", "diyaluma", "ella", "zipline", "demodara", "vantage"],
+    items: [
+      { t: "05:45", title: "Leave", kind: "move" },
+      { t: "06:45", e: "08:45", title: "Lipton's Seat, breakfast at the top", pin: "lipton", photos: G("Lipton's Seat Haputale") },
+      { t: "09:00", e: "10:00", title: "Dambatenne Tea Factory", pin: "dambatenne", photos: G("Dambatenne tea factory") },
+      { t: "11:15", e: "12:00", title: "Diyaluma Falls (roadside view)", kind: "add", pin: "diyaluma", photos: G("Diyaluma falls") },
+      { t: "13:15", title: "Lunch in Ella", pin: "ella" },
+      { t: "14:30", e: "15:30", title: "Zipline", note: "Open until about 16:30.", pin: "zipline", src: { l: "ZRI Adventures", u: "https://www.expedia.com/things-to-do/zip-lining-experience-in-ella.a46550508.activity-details" }, photos: G("Flying Ravana zipline Ella") },
+      { t: "16:00", e: "17:15", title: "Demodara Loop", pin: "demodara", photos: G("Demodara loop") },
+      { t: "17:45", title: "Sunset; dinner at 19:30", note: "Back about 20:30." }
+    ]
+  },
+  {
+    date: "2026-12-01", city: "Kandy", title: "Train to Nanu Oya, then Kandy by night", img: "tea",
+    hotel: "Radisson Hotel Kandy (room only)",
+    route: ["vantage", "ellastn", "nanuoya", "gregory", "ramboda", "tooth", "kandylake", "bahirava", "radisson"],
+    items: [
+      { t: "08:00", title: "Breakfast, check out", note: "The driver takes the bags and drives ahead to Nanu Oya." },
+      { t: "09:15", title: "Be at Ella station", pin: "ellastn", kind: "warn" },
+      { t: "09:50", e: "12:10", title: "Scenic train, Ella to Nanu Oya", note: "Booked: train 111016, observation class seats 31 and 32. The m-ticket is in your email.", kind: "book", pin: "nanuoya", photos: G("ella nanu oya train tea country") },
+      { t: "12:30", e: "14:15", title: "Gregory Lake boat ride, Victoria Park, lunch", kind: "add", pin: "gregory", photos: G("Gregory Lake boat Nuwara Eliya") },
+      { t: "14:30", e: "15:15", title: "Tea factory tour", photos: G("Nuwara Eliya tea estate") },
+      { t: "15:45", e: "16:00", title: "Ramboda Falls", pin: "ramboda", photos: G("Ramboda Falls") },
+      { t: "18:15", title: "Reach Kandy (estimate), straight to the temple", kind: "move" },
+      { t: "18:30", e: "19:45", title: "Temple of the Tooth evening puja", note: "Open until 20:00.", pin: "tooth", photos: G("Temple of the Tooth Kandy evening") },
+      { t: "19:45", title: "Kandy Lake walk", pin: "kandylake" },
+      { t: "20:00", e: "20:30", title: "Bahiravokanda Buddha, lit up", kind: "add", pin: "bahirava", photos: G("Bahirawakanda Buddha Kandy") },
+      { t: "20:45", title: "Dinner; late check-in about 22:00", pin: "radisson", kind: "book" },
+      { t: "", title: "Hakgala Botanical Garden, Seetha Amman Temple, Kandyan dance show", note: "Removed at your request on 14 Nov.", kind: "drop" }
+    ]
+  },
+  {
+    date: "2026-12-02", city: "Sigiriya", title: "Peradeniya, Matale, Sigiriya", img: "peradeniya",
+    hotel: "Sigiriya Jungles Resort, Kimbissa (room only)",
+    drive: "Temple before the spice garden: the gardens are north of Matale on the Sigiriya road",
+    driveSrc: { l: "Rome2rio", u: R("Peradeniya", "Matale") },
+    route: ["radisson", "kandyview", "peradeniya", "matale", "watergdn", "jungles", "tankbund", "jungles"],
+    items: [
+      { t: "06:45", title: "Check out, Kandy View Point on the way", pin: "kandyview", photos: G("Kandy view point Arthur's seat") },
+      { t: "07:30", e: "09:30", title: "Peradeniya Botanical Garden", pin: "peradeniya", photos: G("Peradeniya botanical garden avenue") },
+      { t: "10:30", e: "11:15", title: "Muthumariamman temple, Matale", pin: "matale", photos: G("Matale Muthumariamman temple") },
+      { t: "11:30", e: "12:15", title: "Spice garden on the A9 north of Matale", src: { l: "Lonely Planet", u: "https://www.lonelyplanet.com/points-of-interest/euphoria-spice-herbal/1493467" }, photos: G("Matale spice garden") },
+      { t: "12:15", e: "13:00", title: "Lunch, then about 50 min to Sigiriya", kind: "move" },
+      { t: "14:30", e: "16:00", title: "Sigiriya water gardens and museum (no climb)", note: "Check the ticket price first.", kind: "add", pin: "watergdn", photos: G("Sigiriya water gardens") },
+      { t: "16:15", title: "Check in, rest", pin: "jungles", kind: "book" },
+      { t: "17:15", e: "18:15", title: "Sunset from the tank bund", pin: "tankbund", photos: G("Sigiriya rock sunset lake") },
+      { t: "19:30", title: "Dinner", note: "Back about 20:30." }
+    ]
+  },
+  {
+    date: "2026-12-03", city: "Sigiriya", title: "Dambulla, Polonnaruwa, elephants", img: "galvihara",
+    hotel: "Sigiriya Jungles Resort, Kimbissa",
+    route: ["jungles", "dambulla", "polonnaruwa", "minneriya", "jungles"],
+    items: [
+      { t: "07:00", title: "Leave after breakfast", kind: "move" },
+      { t: "07:30", e: "09:00", title: "Dambulla Cave Temple", note: "Opens 07:00.", pin: "dambulla", src: { l: "Amazing Lanka", u: "https://amazinglanka.com/wp/dambulla-temple/" }, photos: G("Dambulla cave temple interior") },
+      { t: "10:30", e: "13:30", title: "Polonnaruwa", pin: "polonnaruwa", photos: G("Gal Vihara Polonnaruwa") },
+      { t: "13:30", title: "Lunch" },
+      { t: "14:30", e: "17:30", title: "Elephant jeep, Minneriya", pin: "minneriya", src: { l: "GetYourGuide", u: "https://www.getyourguide.com/dambulla-l104454/from-sigiriya-polonnaruwa-day-tour-with-minneriya-safari-t640184/" }, photos: G("Minneriya elephant gathering") },
+      { t: "19:00", title: "Dinner" },
+      { t: "", title: "Hot-air balloon", note: "Removed earlier.", kind: "drop" }
+    ]
+  },
+  {
+    date: "2026-12-04", city: "Colombo", title: "Ritigala to Colombo, the long last day", img: "gallefacegreen",
+    hotel: "Colombo: Courtyard on points was the plan; no booking found as of 17 Nov",
+    hotelWarn: true,
+    route: ["jungles", "ritigala", "athugala", "pinnawala", "courtyard", "galleface", "gangaramaya", "indepsq", "lotus", "dutch", "courtyard"],
+    items: [
+      { t: "06:00", title: "Check out (breakfast box); bags stay in the car", kind: "move" },
+      { t: "07:00", e: "09:00", title: "Ritigala forest monastery", note: "Uneven paths.", kind: "add", pin: "ritigala", photos: G("Ritigala forest monastery") },
+      { t: "11:15", e: "12:00", title: "Athugala, Kurunegala", pin: "athugala", photos: G("Athugala Kurunegala Buddha") },
+      { t: "13:00", e: "14:45", title: "Pinnawala: lunch by the river, herd bathing at 14:00", note: "Open 08:30–17:30; USD 17.70 foreign adult, USD 11.80 SAARC.", kind: "add", pin: "pinnawala", src: { l: "National Zoo", u: "https://www.nationalzoo.gov.lk/pinnawala/" }, photos: G("Pinnawala elephants river bathing") },
+      { t: "14:45", e: "16:30", title: "Drive into Colombo", kind: "move" },
+      { t: "16:45", e: "17:15", title: "Check in, drop bags, freshen up", pin: "courtyard", kind: "warn" },
+      { t: "17:30", e: "18:30", title: "Galle Face Green at sunset", pin: "galleface", photos: G("Galle Face Green sunset") },
+      { t: "18:40", e: "19:40", title: "Gangaramaya and Seema Malaka", note: "Open until 20:00.", pin: "gangaramaya", photos: G("Seema Malaka Colombo") },
+      { t: "19:50", e: "20:05", title: "Independence Square, lit up", pin: "indepsq", photos: G("Independence Memorial Hall Colombo") },
+      { t: "20:15", title: "Drive past the lit-up Lotus Tower", pin: "lotus", photos: G("Lotus Tower Colombo night") },
+      { t: "20:30", e: "21:45", title: "Dinner at the Dutch Hospital precinct", pin: "dutch", photos: G("Dutch Hospital Colombo") },
+      { t: "22:00", title: "Back; weigh the bags (20 kg each on VietJet)", kind: "warn" },
+      { t: "", title: "National Museum", note: "Doesn't fit: closes 17:00 and you reach Colombo about 16:30. Pettah, on the way in, takes its place.", kind: "drop", src: { l: "Amazing Lanka", u: "https://amazinglanka.com/wp/colombo-national-museum/" } }
+    ]
+  },
+  {
+    date: "2026-12-05", city: "Colombo", title: "Fly to Malé", img: "aerial",
+    hotel: "Lonuveli, Hulhumalé (Maldives)",
+    route: ["courtyard", "cmb"],
+    items: [
+      { t: "08:00", title: "Leave for the airport", note: "About 45 min.", kind: "move" },
+      { t: "12:15", e: "13:10", title: "VietJet VJ-1815 to Malé", note: "20 kg checked bag each.", kind: "book", pin: "cmb" }
+    ]
+  }
+];
+
+const BOOKINGS = [
+  { type: "car", title: "Lion Cab & Tours: Prius and driver", when: "23 Nov – 5 Dec", status: "ok", note: "All-in: fuel, tolls, driver costs, all km, the bags from Ella to Nanu Oya. Jeeps, entries and boats are extra. Second half in cash on the final night." },
+  { type: "hotel", title: "Weligama Bay Marriott", when: "23 – 28 Nov · 5 nights", status: "ok", note: "King, ocean view. On points." },
+  { type: "hotel", title: "Laya Safari Hotel, Yala", when: "28 – 29 Nov · 1 night", status: "ok", note: "Breakfast and dinner." },
+  { type: "hotel", title: "Vantage Hills, Ella", when: "29 Nov – 1 Dec · 2 nights", status: "ok", note: "Breakfast. Pay at the hotel." },
+  { type: "train", title: "Train Ella → Nanu Oya", when: "Tue 1 Dec · 09:50 → about 12:10", status: "ok", note: "Train 111016, seats 31 and 32. Be at Ella station by 09:15." },
+  { type: "hotel", title: "Radisson Hotel Kandy", when: "1 – 2 Dec · 1 night", status: "ok", note: "Room only. Late check-in about 22:00." },
+  { type: "hotel", title: "Sigiriya Jungles Resort, Kimbissa", when: "2 – 4 Dec · 2 nights", status: "check", note: "Booked, but payment was still pending on 17 Nov. Check it went through." },
+  { type: "hotel", title: "Colombo (Courtyard on points was the plan)", when: "4 – 5 Dec · 1 night", status: "check", note: "No booking found in email as of 17 Nov." },
+  { type: "flight", title: "VietJet VJ-1815, Colombo → Malé", when: "Sat 5 Dec · 12:15 → 13:10", status: "ok", note: "20 kg checked bag each. Leave for the airport at 08:00." }
+];
+
+const TODO = [
+  { id: "sig-pay", text: "Confirm the Sigiriya Jungles payment went through", when: "before 2 Dec" },
+  { id: "cmb-hotel", text: "Confirm the Colombo hotel for 4 Dec", when: "before 4 Dec" },
+  { id: "yala-jeeps", text: "Yala safari jeeps: 28 Nov afternoon and 29 Nov dawn", when: "28 Nov" },
+  { id: "zipline", text: "Zipline in Ella", when: "30 Nov" },
+  { id: "bags", text: "Buy extra VietJet bag weight if needed", when: "by 1 Dec" },
+  { id: "train", text: "Be at Ella station by 09:15; bags go with the driver", when: "1 Dec" },
+  { id: "tooth", text: "Temple of the Tooth tickets (on the day)", when: "1 Dec" },
+  { id: "pera", text: "Peradeniya tickets (on the day)", when: "2 Dec" },
+  { id: "water", text: "Sigiriya water gardens: check the ticket price and last entry", when: "2 Dec" },
+  { id: "minneriya", text: "Minneriya elephant jeep", when: "3 Dec" },
+  { id: "dambulla", text: "Dambulla and Polonnaruwa tickets (on the day)", when: "3 Dec" },
+  { id: "pinna", text: "Pinnawala tickets (on the day)", when: "4 Dec" },
+  { id: "weigh", text: "Weigh the bags: 20 kg each", when: "4 Dec" },
+  { id: "driver", text: "Pay the driver the second half in cash", when: "final night" }
+];
+
+</script>
+<script>
+(function () {
+  "use strict";
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem("slt:" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem("slt:" + k, JSON.stringify(v)); } catch (e) {} }
+  };
+  const ICON = {
+    bed: '<path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/>',
+    car: '<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/>',
+    train: '<rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16M12 3v8M8 19l-2 3M18 22l-2-3M8 15h.01M16 15h.01"/>',
+    plane: '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+    hotel: '<path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/>',
+    nav: '<polygon points="3 11 22 2 13 21 11 13 3 11"/>',
+    ext: '<path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+    img: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    alert: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/>',
+    route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+    pin: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>'
+  };
+  const ico = (n, cls) => '<svg class="ico' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true">' + ICON[n] + "</svg>";
+  const HOTELS = { marriott: 1, laya: 1, vantage: 1, radisson: 1, jungles: 1, courtyard: 1 };
+  const img = k => window.IMG_BASE + k + "-s.jpg";
+  const gq = k => P[k].q + ", Sri Lanka";
+  const gmapPlace = k => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(gq(k));
+  function gmapDay(route) {
+    const r = route.filter((k, i) => k !== route[i - 1]);
+    if (r.length < 2) return gmapPlace(r[0]);
+    const mid = r.slice(1, -1).slice(0, 9).map(gq).join("|");
+    return "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=" + encodeURIComponent(gq(r[0])) +
+      "&destination=" + encodeURIComponent(gq(r[r.length - 1])) + (mid ? "&waypoints=" + encodeURIComponent(mid) : "");
+  }
+
+  /* Colombo time (UTC+5:30, no DST) */
+  function colomboNow() {
+    const d = new Date(Date.now() + 330 * 60000);
+    return { date: d.toISOString().slice(0, 10), mins: d.getUTCHours() * 60 + d.getUTCMinutes() };
+  }
+  const toMin = t => t ? (+t.slice(0, 2)) * 60 + (+t.slice(3, 5)) : null;
+  const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const parts = iso => { const d = new Date(iso + "T00:00:00Z"); return { dow: DOW[d.getUTCDay()], d: d.getUTCDate(), m: MON[d.getUTCMonth()] }; };
+
+  const now = colomboNow();
+  let todayIdx = DAYS.findIndex(d => d.date === now.date);
+  const before = now.date < DAYS[0].date, after = now.date > DAYS[DAYS.length - 1].date;
+  if (todayIdx < 0) todayIdx = before ? 0 : DAYS.length - 1;
+  let cur = todayIdx;
+  let view = "plan";
+  let ticks = store.get("ticks", {});
+
+  /* header */
+  function sub() {
+    if (before) return "Starts Mon 23 Nov";
+    if (after) return "Trip complete";
+    return "Day " + (todayIdx + 1) + " of " + DAYS.length + " · " + DAYS[todayIdx].city;
+  }
+  $("#sub").textContent = sub();
+
+  function renderPager() {
+    $("#pager").innerHTML = DAYS.map((d, i) => {
+      const p = parts(d.date);
+      const cls = ["chip", i === cur ? "on" : "", d.date < now.date ? "past" : "", d.date === now.date ? "today" : ""].join(" ");
+      return '<button class="' + cls + '" role="tab" aria-selected="' + (i === cur) + '" data-i="' + i + '"><small>' + p.dow + "</small><b>" + p.d + "</b><i>" + esc(d.city) + "</i></button>";
+    }).join("");
+    const on = $("#pager .on");
+    if (on) on.scrollIntoView({ block: "nearest", inline: "center" });
+  }
+
+  function nowIndex(d) {
+    if (d.date !== now.date) return -1;
+    let idx = -1;
+    d.items.forEach((it, i) => {
+      if (it.kind === "drop" || !it.t) return;
+      const s = toMin(it.t);
+      if (s <= now.mins) idx = i;
+    });
+    return idx;
+  }
+
+  function renderPlan() {
+    const d = DAYS[cur], p = parts(d.date);
+    const ni = nowIndex(d);
+    const isPast = d.date < now.date, isToday = d.date === now.date;
+    let n = 0;
+    const rows = d.items.map((it, i) => {
+      const id = d.date + ":" + i;
+      const drop = it.kind === "drop";
+      const done = !drop && (ticks[id] !== undefined ? ticks[id] : (isPast || (d.done && !drop)));
+      const mv = it.kind === "move";
+      const numbered = !drop && it.pin && !HOTELS[it.pin];
+      if (numbered) n++;
+      const dot = drop ? '<span class="dot plain"></span>' : numbered ? '<span class="dot">' + n + "</span>" : it.pin && HOTELS[it.pin] ? '<span class="dot mv">' + ico("bed") + "</span>" : mv ? '<span class="dot mv">' + ico("car") + "</span>" : '<span class="dot plain"></span>';
+      const tags = [];
+      if (it.kind === "add") tags.push('<span class="tag add">Add-on</span>');
+      if (it.kind === "book") tags.push('<span class="tag book">' + ico("check") + "Booked</span>");
+      if (it.kind === "warn") tags.push('<span class="tag warn">' + ico("alert") + "Check</span>");
+      if (it.pin) tags.push('<a class="tag" target="_blank" rel="noopener" href="' + gmapPlace(it.pin) + '">' + ico("pin") + "Map</a>");
+      if (it.src) tags.push('<a class="tag" target="_blank" rel="noopener" href="' + esc(it.src.u) + '">' + ico("ext") + esc(it.src.l) + "</a>");
+      if (it.photos) tags.push('<a class="tag" target="_blank" rel="noopener" href="' + esc(it.photos) + '">' + ico("img") + "Photos</a>");
+      const cls = ["row", drop ? "drop" : "", done ? "done" : "", i === ni ? "now" : ""].join(" ");
+      return '<div class="' + cls + '">' +
+        '<div class="tm">' + (it.t || "—") + (it.e ? "<small>" + it.e + "</small>" : "") + "</div>" + dot +
+        '<div class="body">' + (i === ni ? '<span class="nowlbl">Now</span>' : "") + "<b>" + esc(it.title) + "</b>" + (it.note ? "<p>" + esc(it.note) + "</p>" : "") + (tags.length ? '<div class="tags">' + tags.join("") + "</div>" : "") + "</div>" +
+        (drop ? "<span></span>" : '<button class="chk" aria-label="Mark done" aria-pressed="' + !!done + '" data-id="' + id + '">' + ico("check") + "</button>") +
+        "</div>";
+    }).join("");
+
+    const badge = isToday ? '<span class="badge now">Today</span>' : isPast ? '<span class="badge">Done</span>' : "";
+    $("#v-plan").innerHTML =
+      '<div class="hero">' + '<img src="' + img(d.img) + '" alt="" loading="eager" onerror="this.style.display=\'none\'">' + badge +
+      '<div class="ov"><small>' + p.dow + " " + p.d + " " + p.m + " · " + esc(d.city) + "</small><h2>" + esc(d.title) + "</h2></div></div>" +
+      '<div class="stack">' +
+      '<div class="card meta">' +
+      '<div class="mrow' + (d.hotelWarn ? " warn" : "") + '"><span class="ib">' + ico("bed") + "</span><div><b>Tonight</b><span>" + esc(d.hotel) + "</span></div></div>" +
+      '<div class="mrow"><span class="ib">' + ico("route") + "</span><div><b>Route</b><span>" + d.route.filter((k, i) => k !== d.route[i - 1]).map(k => esc(P[k].n)).join(" → ") + "</span>" +
+      (d.drive ? "<span>" + esc(d.drive) + (d.driveSrc ? ' · <a target="_blank" rel="noopener" href="' + esc(d.driveSrc.u) + '">' + esc(d.driveSrc.l) + "</a>" : "") + "</span>" : "") + "</div></div>" +
+      '<div class="actions"><a class="pill" target="_blank" rel="noopener" href="' + gmapDay(d.route) + '">' + ico("nav") + 'Open day in Google Maps</a><button class="pill soft" data-goto="map">' + ico("pin") + "See on map</button></div>" +
+      "</div>" +
+      '<div class="card tl">' + rows + "</div>" +
+      "</div>";
+  }
+
+  /* map */
+  let map = null, layer = null, mapDay = -1;
+  function renderMapSeg() {
+    const opts = [{ i: -1, l: "Whole trip" }].concat(DAYS.map((d, i) => { const p = parts(d.date); return { i, l: p.d + " " + p.m + " · " + d.city }; }));
+    $("#mapSeg").innerHTML = opts.map(o => '<button data-md="' + o.i + '" class="' + (o.i === mapDay ? "on" : "") + '">' + esc(o.l) + "</button>").join("");
+    const on = $("#mapSeg .on"); if (on) on.scrollIntoView({ block: "nearest", inline: "center" });
+  }
+  function drawMap() {
+    if (!window.L) { $("#map").innerHTML = '<p style="padding:16px;color:#68686F">The map library didn’t load. Check your connection and reopen the page.</p>'; return; }
+    if (!map) {
+      map = L.map("map", { zoomControl: false, attributionControl: true });
+      L.control.zoom({ position: "topright" }).addTo(map);
+      const tiles = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+        subdomains: "abcd", maxZoom: 19, attribution: "© OpenStreetMap contributors © CARTO"
+      }).addTo(map);
+      let warned = false;
+      tiles.on("tileerror", () => { if (!warned) { warned = true; $("#mapNote").textContent = "Map tiles can’t load here, so only the pins and lines show. Open the page in your phone’s browser for the full map. Pins are approximate."; } });
+    }
+    if (layer) layer.remove();
+    layer = L.layerGroup().addTo(map);
+    const days = mapDay < 0 ? DAYS.map((d, i) => i) : [mapDay];
+    const all = [];
+    days.forEach(di => {
+      const d = DAYS[di];
+      const r = d.route.filter((k, i) => k !== d.route[i - 1]);
+      const pts = r.map(k => [P[k].lat, P[k].lng]);
+      all.push(...pts);
+      L.polyline(pts, { color: "#101013", weight: mapDay < 0 ? 2.5 : 3, opacity: mapDay < 0 ? .55 : .8, dashArray: mapDay < 0 ? null : "6 6" }).addTo(layer);
+      const seen = {};
+      let num = 0;
+      r.forEach(k => {
+        if (seen[k]) return; seen[k] = 1;
+        const isHotel = !!HOTELS[k];
+        const label = isHotel ? "" : ++num;
+        if (mapDay < 0 && !isHotel) {
+          L.circleMarker([P[k].lat, P[k].lng], { radius: 4, color: "#fff", weight: 1.5, fillColor: "#101013", fillOpacity: 1 })
+            .bindPopup("<b>" + esc(P[k].n) + "</b><br>" + parts(d.date).d + " " + parts(d.date).m + ' · <a target="_blank" rel="noopener" href="' + gmapPlace(k) + '">Google Maps</a>').addTo(layer);
+          return;
+        }
+        const html = '<div class="mk' + (isHotel ? " hot" : "") + '">' + (isHotel ? "⌂" : label) + "</div>";
+        L.marker([P[k].lat, P[k].lng], { icon: L.divIcon({ html, className: "", iconSize: [26, 26], iconAnchor: [13, 13] }) })
+          .bindPopup("<b>" + esc(P[k].n) + '</b><br><a target="_blank" rel="noopener" href="' + gmapPlace(k) + '">Open in Google Maps</a>').addTo(layer);
+      });
+    });
+    map.invalidateSize();
+    if (all.length) map.fitBounds(all, { padding: [28, 28], maxZoom: 13 });
+  }
+
+  function renderBook() {
+    const t = { car: "car", hotel: "bed", train: "train", flight: "plane" };
+    $("#v-book").innerHTML = '<h2 class="sec">Bookings</h2><div class="stack">' + BOOKINGS.map(b =>
+      '<div class="card bk"><span class="ib">' + ico(t[b.type]) + "</span><div><b>" + esc(b.title) + '</b><div class="w">' + esc(b.when) + "</div>" +
+      '<span class="st ' + b.status + '">' + (b.status === "ok" ? "Confirmed" : "Check") + "</span><p>" + esc(b.note) + "</p></div></div>").join("") +
+      '<a class="card next" href="https://shyam310195.github.io/Trip-itineraries/sri-lanka-maldives/#chapters" target="_blank" rel="noopener"><img src="' + img("dhoni") + '" alt="" onerror="this.style.display=\'none\'"><div><b>Next: the Maldives, 5–10 Dec</b><span>Anniversary on 7 Dec, birthday on 9 Dec. On the trip site.</span></div></a>' +
+      "</div>";
+  }
+
+  function renderTodo() {
+    const t = store.get("todo", {});
+    const left = TODO.filter(x => !t[x.id]).length;
+    $("#v-todo").innerHTML = '<h2 class="sec">To-do · ' + left + " left</h2>" + '<div class="card" style="margin-top:12px">' + TODO.map(x =>
+      '<button class="todo' + (t[x.id] ? " done" : "") + '" data-todo="' + x.id + '" aria-pressed="' + !!t[x.id] + '"><span class="chk">' + ico("check") + "</span><div><span>" + esc(x.text) + "</span><small>" + esc(x.when) + "</small></div></button>").join("") +
+      '</div><p class="foot">Ticks are saved on this phone only.</p>';
+  }
+
+  function show(v) {
+    view = v;
+    document.querySelectorAll(".dock button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+    ["plan", "map", "book", "todo"].forEach(k => { $("#v-" + k).hidden = k !== v; });
+    $("#pager").hidden = !(v === "plan");
+    if (v === "plan") renderPlan();
+    if (v === "map") { renderMapSeg(); drawMap(); }
+    if (v === "book") renderBook();
+    if (v === "todo") renderTodo();
+    try { history.replaceState(null, "", "#" + v); } catch (e) {}
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("click", e => {
+    const chip = e.target.closest("#pager .chip");
+    if (chip) { cur = +chip.dataset.i; renderPager(); renderPlan(); return; }
+    const chk = e.target.closest(".chk[data-id]");
+    if (chk) { const row = chk.closest(".row"); const v = !row.classList.contains("done"); ticks[chk.dataset.id] = v; store.set("ticks", ticks); renderPlan(); return; }
+    const td = e.target.closest("[data-todo]");
+    if (td) { const t = store.get("todo", {}); t[td.dataset.todo] = !t[td.dataset.todo]; store.set("todo", t); renderTodo(); return; }
+    const dock = e.target.closest(".dock button");
+    if (dock) { show(dock.dataset.v); return; }
+    const go = e.target.closest("[data-goto]");
+    if (go) { mapDay = cur; show("map"); return; }
+    const md = e.target.closest("[data-md]");
+    if (md) { mapDay = +md.dataset.md; renderMapSeg(); drawMap(); return; }
+    if (e.target.closest("#todayBtn")) { e.preventDefault(); cur = todayIdx; mapDay = todayIdx; renderPager(); show("plan"); }
+  });
+
+  renderPager();
+  const h = (location.hash || "").slice(1);
+  mapDay = todayIdx;
+  show(["plan", "map", "book", "todo"].includes(h) ? h : "plan");
+  /* keep the "Now" marker fresh */
+  setInterval(() => { const n = colomboNow(); if (n.date !== now.date) { location.reload(); return; } if (n.mins !== now.mins) { now.mins = n.mins; if (view === "plan") renderPlan(); } }, 60000);
+})();
+
+</script>
+</body>
+</html>
